@@ -17,6 +17,7 @@ public class characterAction : MonoBehaviour
 
     private CharacterState characterState;
     public GameObject moveTile;
+    public GameObject AttackObject;
     Vector3 target;
 
     // Start is called before the first frame update
@@ -35,18 +36,18 @@ public class characterAction : MonoBehaviour
                 {
                     ChangeState(CharacterState.Move);
                 }
+                isIdle();
                 break;
             case CharacterState.Move:
-
                 isMove();
                 if (Vector3.Distance(target, this.transform.position) < 0.1f)
                 {
                     moveTile = null;
                     GameObject.Find("Camera").GetComponent<BattleSystem>().EndTurn();
-
                     ChangeState(CharacterState.Idle);
 
                 }
+                
                 break;
 
             case CharacterState.Attack:
@@ -127,6 +128,15 @@ public class characterAction : MonoBehaviour
     {
       
         target = moveTile.transform.position + new Vector3(0, 1, 0);
+        if(target.x < this.transform.position.x)
+        {
+            this.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
+        moveTile.GetComponent<GridTile>().ChangeState(1);
         this.transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime*5);
        
     }
@@ -151,6 +161,7 @@ public class characterAction : MonoBehaviour
     public void setMoveGrid(GameObject GridTile)
     {
         moveTile = GridTile;
+        GameObject.Find("Camera").GetComponent<MouseController>().initCurrentObject();
     }
 
     public GameObject getMoveGrid()
@@ -158,5 +169,9 @@ public class characterAction : MonoBehaviour
         return moveTile;
     }
 
+    private void SearchTile()
+    {
+        
+    }
 
 }

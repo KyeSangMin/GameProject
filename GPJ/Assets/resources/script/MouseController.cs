@@ -22,10 +22,16 @@ public class MouseController : MonoBehaviour
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
 
-            if (hit.collider.CompareTag("GridTile"))
+            if(hit.collider == null)
             {
+                return;
+            }
+
+            if (hit.collider.CompareTag("GridTile") && currentObject != null)
+            {
+                //hit.collider.gameObject.GetComponent<GridTile>().getTIle().
                 currentObject.GetComponent<characterAction>().setMoveGrid(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
-                currentObject = null;
+                //currentObject = null;
 
             }
 
@@ -42,6 +48,11 @@ public class MouseController : MonoBehaviour
     public GameObject getCurrentObject()
     {
         return currentObject;
+    }
+
+    public void initCurrentObject()
+    {
+        currentObject = null;
     }
 
 

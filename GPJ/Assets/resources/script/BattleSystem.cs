@@ -8,6 +8,7 @@ public class BattleSystem : MonoBehaviour
     private enum Battlestate
     {
         IncreaseGauge,
+        GivingTurn,
         AllyTrun,
         EnemyTrun,
         EndBattle
@@ -38,8 +39,8 @@ public class BattleSystem : MonoBehaviour
     // 임시 변수
 
     int speedValue = 100;
-    int speedValue2 = 250;
-    int speedValue3 = 500;
+    int speedValue2 = 100;
+    int speedValue3 = 100;
 
     /************************************************/
 
@@ -68,20 +69,29 @@ public class BattleSystem : MonoBehaviour
                 UpdateSpeedGauge();
                 break;
 
-            case Battlestate.AllyTrun:
+            case Battlestate.GivingTurn:
                 if (PriorityQueue.Count == 0)
                 {
-                    Debug.Log("empty");
+                    ChangeState(Battlestate.IncreaseGauge);
+                }
+                ExecuteAction();
+                break;
+
+            case Battlestate.AllyTrun:
+                if(turnedObejct == null)
+                {
                     ChangeState(Battlestate.IncreaseGauge);
                 }
                 AllyTurn();
                 
                 break;
 
-
-
-
             case Battlestate.EnemyTrun:
+                if (turnedObejct == null)
+                {
+                    ChangeState(Battlestate.IncreaseGauge);
+                }
+                AllyTurn();
                 break;
             case Battlestate.EndBattle:
                 break;
@@ -176,7 +186,7 @@ public class BattleSystem : MonoBehaviour
       
         }
        
-        StartCoroutine(SpeedGaugeDilay(0.35f));
+        StartCoroutine(SpeedGaugeDelay(0.35f));
         CheckSpeedGauge();
     }
 
@@ -194,18 +204,18 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        ExecuteAction();
+        ChangeState(Battlestate.GivingTurn);
 
     }
 
     private void ExecuteAction()
     {
-
+        /*
         if(PriorityQueue.Count == 0)
         {
             return;
         }
-
+        */
         GameObject tempObject = Dequeue();
 
         for (int i = 0; i < allyChars.Length + enemyChars.Length; i++)
@@ -222,7 +232,7 @@ public class BattleSystem : MonoBehaviour
 
 
 
-    IEnumerator SpeedGaugeDilay(float time)
+    IEnumerator SpeedGaugeDelay(float time)
     {
 
         yield return new WaitForSeconds(time);
@@ -303,8 +313,8 @@ public class BattleSystem : MonoBehaviour
     {
         turnedObejct = null;
         GameObject.Find("Camera").GetComponent<MouseController>().setCurrentObject(turnedObejct);
-        ExecuteAction();
-    
-     }
+        ChangeState(Battlestate.GivingTurn);
+
+    }
 
 }

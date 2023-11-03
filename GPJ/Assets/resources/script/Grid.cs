@@ -18,7 +18,8 @@ public class Grid : MonoBehaviour
     public GameObject[,] grids;
 
     [SerializeField]
-    public GameObject[] grid;
+    //public GameObject[] grid;
+    public List<GameObject> grid;
 
     [SerializeField]
     int totalgrids = 0;
@@ -50,6 +51,30 @@ public class Grid : MonoBehaviour
         
     }
 
+   private void LoadMapData()
+    {
+
+    }
+
+    public void aroundTile(GameObject gridtile)
+    {
+
+        for (int i = 0; i < GridY; i++)
+        {
+            for (int j = 1; j < GridX + 1; j++)
+            {
+                grids[i, j - 1] = this.transform.GetChild(i * 9 + j - 1).gameObject;
+
+                if(grids[i,j - 1] == gridtile)
+                {
+                    
+                }
+                
+            }
+
    
+        }
+        
+    }
 }
 
