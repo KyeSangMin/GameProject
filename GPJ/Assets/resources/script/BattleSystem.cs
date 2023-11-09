@@ -34,18 +34,6 @@ public class BattleSystem : MonoBehaviour
     private List<Tuple<GameObject, int>> PriorityQueue = new List<Tuple<GameObject, int>>();
 
 
-    /***********************************************/
-
-    // 임시 변수
-
-    int speedValue = 100;
-    int speedValue2 = 100;
-    int speedValue3 = 100;
-
-    /************************************************/
-
-
-
 
     // Start is called before the first frame update
     void Start()
@@ -68,7 +56,6 @@ public class BattleSystem : MonoBehaviour
             case Battlestate.IncreaseGauge:
                 UpdateSpeedGauge();
                 break;
-
             case Battlestate.GivingTurn:
                 if (PriorityQueue.Count == 0)
                 {
@@ -76,16 +63,13 @@ public class BattleSystem : MonoBehaviour
                 }
                 ExecuteAction();
                 break;
-
             case Battlestate.AllyTrun:
                 if(turnedObejct == null)
                 {
                     ChangeState(Battlestate.IncreaseGauge);
                 }
                 AllyTurn();
-                
                 break;
-
             case Battlestate.EnemyTrun:
                 if (turnedObejct == null)
                 {
@@ -169,20 +153,7 @@ public class BattleSystem : MonoBehaviour
         for (int i = 0; i < allyChars.Length + enemyChars.Length; i++)
         {
 
-            //SpeedGaugeMap[i] += ActionCharacters[i].GetComponent<CharacterStat>().getSpeed();
-
-            if (i == 0)
-            {
-                SpeedGaugeMap[i] += speedValue;
-            }
-            else if(i == 1)
-            {
-                SpeedGaugeMap[i] += speedValue2;
-            }
-            else if (i == 2)
-            {
-                SpeedGaugeMap[i] += speedValue3;
-            }
+            SpeedGaugeMap[i] += ActionCharacters[i].GetComponent<CharacterStats>().getSpeed();
       
         }
        
@@ -210,12 +181,6 @@ public class BattleSystem : MonoBehaviour
 
     private void ExecuteAction()
     {
-        /*
-        if(PriorityQueue.Count == 0)
-        {
-            return;
-        }
-        */
         GameObject tempObject = Dequeue();
 
         for (int i = 0; i < allyChars.Length + enemyChars.Length; i++)
@@ -254,16 +219,12 @@ public class BattleSystem : MonoBehaviour
     {
         if(PriorityQueue.Count == 0)
         {
-            Debug.Log("dequeue null");
             return null;
-
-        }
-    
+        } 
         GameObject tempObject = PriorityQueue[0].Item1;
         PriorityQueue.RemoveAt(0);
         PriorityQueue.Sort((x, y) => x.Item2.CompareTo(y.Item2));
         return tempObject;
-
     }
 
   
@@ -279,6 +240,7 @@ public class BattleSystem : MonoBehaviour
         }
         if (actionCharacters.CompareTag("Ally"))
         {
+            SearchAinmation();
             ChangeState(Battlestate.AllyTrun);
            
         }
@@ -287,6 +249,15 @@ public class BattleSystem : MonoBehaviour
             ChangeState(Battlestate.EnemyTrun);
         }
 
+    }
+
+
+    private void SearchAinmation()
+    {
+        int x = (int)turnedObejct.GetComponent<CharacterStats>().getCharacterPos().x;
+        int y = (int)turnedObejct.GetComponent<CharacterStats>().getCharacterPos().y;
+        GameObject tile = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle(x,y);
+        tile.GetComponent<GridTile>().getSreach(turnedObejct.GetComponent<CharacterStats>().getRange());
     }
 
     /*----------------------------------------------------------*/
@@ -305,16 +276,30 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-
+    /*----------------------------------------------------------*/
+    public void FindCharacter(int x, int y)
+    {
+        for (int i = 0; i < ActionCharacters.Length; i++)
+        {
+            if (ActionCharacters[i].GetComponent<CharacterStats>().getCharacterPos().x == x && ActionCharacters[i].GetComponent<CharacterStats>().getCharacterPos().y == y)
+            {
+                Debug.Log(ActionCharacters[i]);
+            }
+        }
+    }
     /*----------------------------------------------------------*/
     // endtrun
 
     public void EndTurn()
     {
+        
         turnedObejct = null;
         GameObject.Find("Camera").GetComponent<MouseController>().setCurrentObject(turnedObejct);
         ChangeState(Battlestate.GivingTurn);
 
     }
+
+
+   
 
 }

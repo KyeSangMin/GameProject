@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridTile : MonoBehaviour
 {
    
-    private enum TileState 
+    public enum TileState 
     { 
         none,
         allypos,
@@ -13,15 +13,18 @@ public class GridTile : MonoBehaviour
         obstacle
 
     }
-
+    [SerializeField]
     private TileState currentState;
-
+    [SerializeField]
+    private int TileX;
+    [SerializeField]
+    private int TileY;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        currentState = TileState.none;
+        //currentState = TileState.none;
     }
 
     // Update is called once per frame
@@ -30,41 +33,51 @@ public class GridTile : MonoBehaviour
 
     }
 
-    /*
-    public void OnMouseDown()
+    
+    public void setTileXY(int x, int y)
     {
-        getTIle();
-        Debug.Log(getTIle());
+        TileX = x;
+        TileY = y;
     }
-    */
+    
+    public int getTileX()
+    {
+        return TileX;
+    }
+    public int getTileY()
+    {
+        return TileY;
+    }
+
     public GameObject getTIle()
     {
         return this.gameObject;
     }
-
-    public void ChangeState(int state)
+    public List<GameObject> getSreach(int Range)
     {
-        switch(state)
+        List<GameObject> around = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().SearchTile(this.gameObject, Range);
+        /*
+        for(int i = 0; i < around.Count; i++) 
         {
-            case 0:
-                currentState = TileState.none;
-                break;
-            case 1:
-                currentState = TileState.allypos;
-                break;
-            case 2:
-                currentState = TileState.enemypos;
-                break;
-            case 3:
-                currentState = TileState.obstacle;
-                break;
-
+            Debug.Log(around[i]);
         }
+        */
+        GameObject.Find("BattleGrid").GetComponent<BattleGrid>().resetList();
+        return around;
+    }
+    
 
-        
+
+    public void ChangeState(TileState changeState)
+    {
+        currentState = changeState;
 
     }
 
+    public TileState getState()
+    {
 
+        return currentState;
+    }
 
 }

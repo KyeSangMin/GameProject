@@ -29,11 +29,28 @@ public class MouseController : MonoBehaviour
 
             if (hit.collider.CompareTag("GridTile") && currentObject != null)
             {
-                //hit.collider.gameObject.GetComponent<GridTile>().getTIle().
-                currentObject.GetComponent<characterAction>().setMoveGrid(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
-                //currentObject = null;
+                if (hit.collider.gameObject.GetComponent<GridTile>().getState() == GridTile.TileState.none)
+                {
+                    GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.none);
+                    currentObject.GetComponent<characterAction>().setMoveGrid(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
+                }
+                else if (hit.collider.gameObject.GetComponent<GridTile>().getState() == GridTile.TileState.enemypos)
+                {
+                    GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.none);
+                    currentObject.GetComponent<characterAction>().setAtackObject(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
+                }
+                else if (hit.collider.gameObject.GetComponent<GridTile>().getState() == GridTile.TileState.allypos)
+                {
+                    GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.none);
+                    currentObject.GetComponent<characterAction>().setAtackObject(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
+                }
+                else if (hit.collider.gameObject.GetComponent<GridTile>().getState() == GridTile.TileState.obstacle)
+                {
+                    return;
+                }
 
             }
+
 
 
 
