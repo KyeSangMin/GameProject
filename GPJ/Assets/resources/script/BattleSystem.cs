@@ -8,7 +8,7 @@ public class BattleSystem : MonoBehaviour
     private enum Battlestate
     {
         IncreaseGauge,
-        GivingTurn,
+        GivingTrun,
         AllyTrun,
         EnemyTrun,
         EndBattle
@@ -56,27 +56,34 @@ public class BattleSystem : MonoBehaviour
             case Battlestate.IncreaseGauge:
                 UpdateSpeedGauge();
                 break;
-            case Battlestate.GivingTurn:
+
+            case Battlestate.GivingTrun:
                 if (PriorityQueue.Count == 0)
                 {
                     ChangeState(Battlestate.IncreaseGauge);
+                    break;
                 }
                 ExecuteAction();
                 break;
+
             case Battlestate.AllyTrun:
                 if(turnedObejct == null)
                 {
                     ChangeState(Battlestate.IncreaseGauge);
+                    break;
                 }
-                AllyTurn();
+                AllyTrun();
                 break;
+
             case Battlestate.EnemyTrun:
                 if (turnedObejct == null)
                 {
                     ChangeState(Battlestate.IncreaseGauge);
+                    break;
                 }
-                AllyTurn();
+                AllyTrun();
                 break;
+
             case Battlestate.EndBattle:
                 break;
         }
@@ -175,7 +182,7 @@ public class BattleSystem : MonoBehaviour
             }
         }
 
-        ChangeState(Battlestate.GivingTurn);
+        ChangeState(Battlestate.GivingTrun);
 
     }
 
@@ -240,29 +247,37 @@ public class BattleSystem : MonoBehaviour
         }
         if (actionCharacters.CompareTag("Ally"))
         {
-            SearchAinmation();
+            SearchAnimation();
             ChangeState(Battlestate.AllyTrun);
            
         }
         else if (actionCharacters.CompareTag("Enemy"))
         {
+            SearchAnimation();
             ChangeState(Battlestate.EnemyTrun);
         }
 
     }
 
 
-    private void SearchAinmation()
+    private void SearchAnimation()
     {
         int x = (int)turnedObejct.GetComponent<CharacterStats>().getCharacterPos().x;
         int y = (int)turnedObejct.GetComponent<CharacterStats>().getCharacterPos().y;
+        int range = turnedObejct.GetComponent<CharacterStats>().getRange();
         GameObject tile = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle(x,y);
-        tile.GetComponent<GridTile>().getSreach(turnedObejct.GetComponent<CharacterStats>().getRange());
+        List<GameObject> TempAnimationTile = new List<GameObject>();
+        TempAnimationTile = AStarSearch.bfsSearch(tile, range);
+        foreach (GameObject next in TempAnimationTile)
+        {
+            next.GetComponent<GridTile>().ChangeMoveTileState(GridTile.MoveTile.CanMoveTile);
+        }
+        
     }
 
     /*----------------------------------------------------------*/
     //allytrun
-    private void AllyTurn()
+    private void AllyTrun()
     {
         GameObject.Find("Camera").GetComponent<MouseController>().setCurrentObject(turnedObejct);
     }
@@ -270,22 +285,24 @@ public class BattleSystem : MonoBehaviour
 
     /*----------------------------------------------------------*/
     //enemytrun
-    private void EnemyTurn()
+    private void EnemyTrun()
     {
 
     }
 
 
     /*----------------------------------------------------------*/
-    public void FindCharacter(int x, int y)
+    public GameObject FindCharacter(int x, int y)
     {
         for (int i = 0; i < ActionCharacters.Length; i++)
         {
             if (ActionCharacters[i].GetComponent<CharacterStats>().getCharacterPos().x == x && ActionCharacters[i].GetComponent<CharacterStats>().getCharacterPos().y == y)
             {
-                Debug.Log(ActionCharacters[i]);
+                return ActionCharacters[i];
             }
         }
+
+        return null;
     }
     /*----------------------------------------------------------*/
     // endtrun
@@ -295,7 +312,7 @@ public class BattleSystem : MonoBehaviour
         
         turnedObejct = null;
         GameObject.Find("Camera").GetComponent<MouseController>().setCurrentObject(turnedObejct);
-        ChangeState(Battlestate.GivingTurn);
+        ChangeState(Battlestate.GivingTrun);
 
     }
 

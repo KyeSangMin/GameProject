@@ -62,6 +62,7 @@ public class BattleGrid : MonoBehaviour
     {      
         int Xcoordinate = starttile.GetComponent<GridTile>().getTileX();
         int Ycoordinate = starttile.GetComponent<GridTile>().getTileY();
+        
         for (int j = Ycoordinate - range; j <= Ycoordinate + range; j++)
         {
             int temp = j;
@@ -71,7 +72,7 @@ public class BattleGrid : MonoBehaviour
             }
             if (!ArountTile.Contains(grids[j, Xcoordinate]))
             {
-                ArountTile.Add(grids[j, Xcoordinate]);
+                ArountTile.Add(grids[j, Xcoordinate]);        
             }
             j = temp;
         }
@@ -87,8 +88,21 @@ public class BattleGrid : MonoBehaviour
                 ArountTile.Add(grids[Ycoordinate,i]);
             }
             i = temp;
-        }     
+        }
         return ArountTile;
+    }
+
+    public void resetTileState()
+    {
+        for (int i = 0; i < GridY; i++)
+        {
+            for (int j = 1; j < GridX + 1; j++)
+            {
+                grids[i, j - 1].GetComponent<GridTile>().ChangeMoveTileState(GridTile.MoveTile.CantTile);
+                grids[i, j - 1].GetComponent<GridTile>().resetTileAni();
+            }
+
+        }
     }
 
     public void resetList()

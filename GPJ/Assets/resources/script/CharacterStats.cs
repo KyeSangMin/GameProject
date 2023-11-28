@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-
+    [SerializeField]
     private int Range;
     private int Speed;
     private int MaxHP;
+    [SerializeField]
     private int CurrentHP;
     private int Damage;
     [SerializeField]
@@ -17,7 +18,7 @@ public class CharacterStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Range = 1;
+        Range = 3;
         Speed = 100;
         MaxHP = 100;
         CurrentHP = MaxHP;

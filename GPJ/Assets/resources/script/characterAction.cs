@@ -6,7 +6,7 @@ public class characterAction : MonoBehaviour
 {
 
 
-    private enum CharacterState
+    public enum CharacterState
     {
         Idle,
         Move,
@@ -21,6 +21,7 @@ public class characterAction : MonoBehaviour
     public GameObject moveTile;
     public GameObject AttackObject;
     Vector3 target;
+    private int IncomeDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -38,15 +39,18 @@ public class characterAction : MonoBehaviour
                 if (MovedPath.Count != 0)
                 {
                     ChangeState(CharacterState.Move);
+                    break;
                 }
                 else if (AttackObject != null)
                 {
                     ChangeState(CharacterState.Attack);
+                    break;
                 }
                 isIdle();
                 break;
+
             case CharacterState.Move:
-                if (Vector3.Distance(target, this.transform.position) < 0.01f)
+                if (Vector3.Distance(target, this.transform.position) == 0.0f)
                 {
                     if (MovedPath[0] == moveTile)
                     {
@@ -69,17 +73,20 @@ public class characterAction : MonoBehaviour
             case CharacterState.Attack:
                 if (AttackObject == null)
                 {
-                    animator.SetBool("isAttack", false);
                     ChangeState(CharacterState.Idle);
                     GameObject.Find("Camera").GetComponent<BattleSystem>().EndTurn();
                     break;
                 }
                 isAttack();
                 break;
-
-
-
-            case CharacterState.Hit:
+            case CharacterState.Hit:             
+                if(animator.GetBool("isHit"))
+                {
+                    animator.SetBool("isHit", false);
+                    ChangeState(CharacterState.Idle);        
+                    break;
+                }
+                isHit();
                 break;
 
             case CharacterState.Die:
@@ -137,7 +144,7 @@ public class characterAction : MonoBehaviour
         }
     }
 
-    private void ChangeState(CharacterState updateState)
+    public void ChangeState(CharacterState updateState)
     {
         characterState = updateState;
     }
@@ -166,11 +173,11 @@ public class characterAction : MonoBehaviour
         this.gameObject.GetComponent<CharacterStats>().setCharacterPos(new Vector2(moveTile.GetComponent<GridTile>().getTileX(), moveTile.GetComponent<GridTile>().getTileY()));
         if(this.gameObject.CompareTag("Ally"))
         {
-            moveTile.GetComponent<GridTile>().ChangeState(GridTile.TileState.allypos);
+            moveTile.GetComponent<GridTile>().ChangeState(GridTile.TileState.Allypos);
         }
         else
         {
-            moveTile.GetComponent<GridTile>().ChangeState(GridTile.TileState.enemypos);
+            moveTile.GetComponent<GridTile>().ChangeState(GridTile.TileState.Enemypos);
         }
     }
 
@@ -187,15 +194,30 @@ public class characterAction : MonoBehaviour
 
     private void isAttack()
     {
+        
+
         animator.SetBool("isAttack", true);
-        //GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(AttackObject.GetComponent<GridTile>().getTileX(), AttackObject.GetComponent<GridTile>().getTileY());
+        GameObject tile = this.gameObject.GetComponentInParent<characterAction>().AttackObject;
+        GameObject enemy = GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY());
+        enemy.GetComponent<characterAction>().ChangeState(CharacterState.Hit);
+        enemy.GetComponent<characterAction>().setIncomeDamage(this.gameObject.GetComponent<CharacterStats>().getDamage());
+        target = GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY()).transform.position + new Vector3(0, 0.6f, 0);
+        if (target.x < this.transform.position.x)
+        {
+            this.GetComponentInChildren<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.GetComponentInChildren<SpriteRenderer>().flipX = false;
+        }
     }
 
    
 
-    private void isHit(int damage)
+    public void isHit()
     {
-        this.GetComponent<CharacterStats>().setHP(damage);
+        animator.SetBool("isHit",true);
+        this.GetComponent<CharacterStats>().setHP(IncomeDamage);
     }
 
     private void isDie()
@@ -203,6 +225,10 @@ public class characterAction : MonoBehaviour
 
     }
 
+    public void setIncomeDamage(int damage)
+    {
+        IncomeDamage = damage;
+    }
 
     public void setMoveGrid(GameObject GridTile)
     {
@@ -226,16 +252,24 @@ public class characterAction : MonoBehaviour
     public void setAtackObject(GameObject Atacked)
     {
 
-        AttackObject = Atacked;
-        if (Atacked == null)
+        AttackObject = Atacked;      
+        if (Atacked == null )
         {
             return;
         }
-
-       
-        GameObject.Find("Camera").GetComponent<MouseController>().initCurrentObject();
         moveTile = SearchAtackTile(AttackObject);
         setMoveGrid(moveTile);
+        GameObject.Find("Camera").GetComponent<MouseController>().initCurrentObject();
+    }
+
+    public void switchPosition(GameObject ally2)
+    {
+        GameObject allyobject1 = this.gameObject;
+        GameObject allyobject2 = ally2;
+        GameObject MoveTile1 = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)allyobject1.GetComponent<CharacterStats>().getCharacterPos().x, (int)allyobject1.GetComponent<CharacterStats>().getCharacterPos().y);
+        GameObject MoveTile2 = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)allyobject2.GetComponent<CharacterStats>().getCharacterPos().x, (int)allyobject2.GetComponent<CharacterStats>().getCharacterPos().y);
+        allyobject1.GetComponent<characterAction>().setMoveGrid(MoveTile2);
+        allyobject2.GetComponent<characterAction>().setMoveGrid(MoveTile1);      
     }
 
     private GameObject SearchAtackTile(GameObject AtackTile)
@@ -251,8 +285,9 @@ public class characterAction : MonoBehaviour
         foreach (GameObject tempObject in AtackTiles) 
         {
             var Tag = tempObject.GetComponent<GridTile>().getState();
+            var MoveTag = tempObject.GetComponent<GridTile>().getTileState();
             float currentdistance = Vector2.Distance(tempObject.transform.position, this.transform.position);
-            if (distance > currentdistance && Tag == GridTile.TileState.none)
+            if (distance > currentdistance && Tag == GridTile.TileState.None && MoveTag == GridTile.MoveTile.CanMoveTile)
             {
                 Nearbytile = tempObject;
             }

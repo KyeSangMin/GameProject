@@ -16,6 +16,7 @@ public static class AStarSearch
         Dictionary<GameObject, int> cost_so_far = new Dictionary<GameObject, int>();
         came_from[Start] = null;
         cost_so_far[Start] = 0;
+
         while (frontier.Count != 0)
         {
             GameObject current = frontier.Dequeue();
@@ -48,6 +49,36 @@ public static class AStarSearch
         path.Reverse();
         return path;
     }
+
+    public static List<GameObject> bfsSearch(GameObject StartObject, int range)
+    {
+        List<GameObject> aroundTile = new List<GameObject>();
+        Queue<GameObject> frontier = new Queue<GameObject>();
+        Dictionary<GameObject, int> distances = new Dictionary<GameObject, int>();
+        GameObject start = StartObject;
+        frontier.Enqueue(start);
+        aroundTile.Add(start);
+        distances[start] = 0;
+
+        while (frontier.Count != 0)
+        {
+            GameObject current = frontier.Dequeue();
+            int currentDistance = distances[current];
+
+            foreach (GameObject next in current.gameObject.GetComponent<GridTile>().getSreach(1)) 
+            {
+                if(!aroundTile.Contains(next) && currentDistance + 1<= range)
+                {
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+                }
+            }
+        }
+        return aroundTile;
+    }
+
+
 
 
     private static float Cost(GameObject current, GameObject Next)

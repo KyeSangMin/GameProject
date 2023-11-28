@@ -19,4 +19,8 @@ public class CAnimationHandeler : MonoBehaviour
         animator.SetBool("isAttack", false);
         this.gameObject.GetComponentInParent<characterAction>().setAtackObject(null);
     }
+
+
+    
+
 }
