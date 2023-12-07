@@ -378,7 +378,10 @@
 "Assets/resources/script/BattleSystem.cs"
 "Assets/resources/script/CAnimationHandeler.cs"
 "Assets/resources/script/characterAction.cs"
+"Assets/resources/script/CharacterInfoManager.cs"
 "Assets/resources/script/CharacterStats.cs"
+"Assets/resources/script/CSVParser.cs"
+"Assets/resources/script/GameManager.cs"
 "Assets/resources/script/GridTile.cs"
 "Assets/resources/script/MouseController.cs"
 -langversion:9.0

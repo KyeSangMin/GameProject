@@ -10,21 +10,23 @@ public class CharacterStats : MonoBehaviour
     private int MaxHP;
     [SerializeField]
     private int CurrentHP;
+    [SerializeField]
     private int Damage;
     [SerializeField]
     private Vector2 position;
 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Range = 3;
         Speed = 100;
         MaxHP = 100;
         CurrentHP = MaxHP;
-        Damage = 100;
+        Damage = 50;
         //position = new Vector2(0, 0);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -52,13 +54,23 @@ public class CharacterStats : MonoBehaviour
         return position;
     }
 
-    public void setHP(int damage)
+    public void setHP(bool IsAttack, int damage)
     {
+        if(!IsAttack)
+        {
+            return;
+        }
         CurrentHP = CurrentHP - damage;
+        IsAttack = false;
     }
     public int getDamage()
     {
         return Damage;
+    }
+
+    public int getCurrentHP()
+    {
+        return CurrentHP;
     }
 
 }

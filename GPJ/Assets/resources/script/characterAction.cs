@@ -15,19 +15,23 @@ public class characterAction : MonoBehaviour
         Die
     }
     private Animator animator;
+    private BattleSystem battleSystem;
 
-    private CharacterState characterState;
+    public CharacterState characterState;
     private List<GameObject> MovedPath = new List<GameObject>();
-    public GameObject moveTile;
-    public GameObject AttackObject;
-    Vector3 target;
+    private GameObject moveTile;
+    private GameObject AttackObject;
+    private Vector3 target;
+    [SerializeField]
     private int IncomeDamage;
+    public bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
     {
-        // animator = gameObject.GetComponent<Animator>();
         animator = gameObject.GetComponentInChildren<Animator>();
+        isAttacking = false;
+        battleSystem = GameObject.Find("Camera").GetComponent<BattleSystem>();
     }
 
     // Update is called once per frame
@@ -46,6 +50,10 @@ public class characterAction : MonoBehaviour
                     ChangeState(CharacterState.Attack);
                     break;
                 }
+                else if (this.GetComponent<CharacterStats>().getCurrentHP() <= 0)
+                {
+                    ChangeState(CharacterState.Die);
+                }
                 isIdle();
                 break;
 
@@ -59,7 +67,7 @@ public class characterAction : MonoBehaviour
                         ChangeState(CharacterState.Idle);
                         if (AttackObject == null)
                         {
-                            GameObject.Find("Camera").GetComponent<BattleSystem>().EndTurn();
+                            battleSystem.EndTurn();
                         }                  
                         break;
                     }
@@ -74,22 +82,28 @@ public class characterAction : MonoBehaviour
                 if (AttackObject == null)
                 {
                     ChangeState(CharacterState.Idle);
-                    GameObject.Find("Camera").GetComponent<BattleSystem>().EndTurn();
+                    battleSystem.EndTurn();
                     break;
                 }
                 isAttack();
                 break;
-            case CharacterState.Hit:             
-                if(animator.GetBool("isHit"))
+            case CharacterState.Hit:
+                if(!isAttacking)
                 {
                     animator.SetBool("isHit", false);
-                    ChangeState(CharacterState.Idle);        
+                    if (this.GetComponent<CharacterStats>().getCurrentHP() <= 0)
+                    {
+                        ChangeState(CharacterState.Die);
+                        break;
+                    }
+                    ChangeState(CharacterState.Idle);      
                     break;
                 }
                 isHit();
                 break;
 
             case CharacterState.Die:
+                isDie();
                 break;
         }
     }
@@ -185,23 +199,21 @@ public class characterAction : MonoBehaviour
     {
         MovedPath = AStarSearch.Search(SearchTile(), moveTile);
 
-        for(int i = 0; i< MovedPath.Count; i++)
-        {
-            Debug.Log(MovedPath[i]);
-        }
-        
     }
 
     private void isAttack()
     {
-        
-
         animator.SetBool("isAttack", true);
-        GameObject tile = this.gameObject.GetComponentInParent<characterAction>().AttackObject;
-        GameObject enemy = GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY());
-        enemy.GetComponent<characterAction>().ChangeState(CharacterState.Hit);
+        GameObject tile = this.gameObject.GetComponentInParent<characterAction>().AttackObject;       
+        GameObject enemy = battleSystem.FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY());
         enemy.GetComponent<characterAction>().setIncomeDamage(this.gameObject.GetComponent<CharacterStats>().getDamage());
-        target = GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY()).transform.position + new Vector3(0, 0.6f, 0);
+        if (enemy.GetComponent<characterAction>().characterState != CharacterState.Hit && enemy.GetComponent<characterAction>().isAttacking == true)
+        {
+            enemy.GetComponent<characterAction>().ChangeState(CharacterState.Hit);
+        }
+      
+        target = battleSystem.FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY()).transform.position + new Vector3(0, 0.6f, 0);
+
         if (target.x < this.transform.position.x)
         {
             this.GetComponentInChildren<SpriteRenderer>().flipX = true;
@@ -212,17 +224,16 @@ public class characterAction : MonoBehaviour
         }
     }
 
-   
-
     public void isHit()
     {
         animator.SetBool("isHit",true);
-        this.GetComponent<CharacterStats>().setHP(IncomeDamage);
+        isAttacking = false;
+        this.GetComponent<CharacterStats>().setHP(true, IncomeDamage);
     }
 
     private void isDie()
     {
-
+        animator.SetBool("isdead", true);
     }
 
     public void setIncomeDamage(int damage)
@@ -249,11 +260,11 @@ public class characterAction : MonoBehaviour
         return tile;
     }
 
-    public void setAtackObject(GameObject Atacked)
+    public void setAtackObject(GameObject Attacked)
     {
 
-        AttackObject = Atacked;      
-        if (Atacked == null )
+        AttackObject = Attacked;      
+        if (Attacked == null )
         {
             return;
         }

@@ -8,7 +8,7 @@ public static class AStarSearch
     public static List<GameObject> Search(GameObject StartObject, GameObject EndObject)
     {
         Queue<GameObject> frontier = new Queue<GameObject>();
-        List<GameObject> path = new List<GameObject>();
+        List<GameObject> path = new List<GameObject>(); 
         GameObject Start = StartObject;
         GameObject End = EndObject;
         frontier.Enqueue(Start);

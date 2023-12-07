@@ -18,46 +18,60 @@ public class BattleGrid : MonoBehaviour
     public GameObject[,] grids;
 
     [SerializeField]
-    //public GameObject[] grid;
     public List<GameObject> grid;
 
     [SerializeField]
     int totalgrids = 0;
     List<GameObject> ArountTile = new List<GameObject>();
+    private CSVParser csvParser;
 
+    private void Awake()
+    {
+        csvParser = this.GetComponent<CSVParser>();
+        totalgrids = this.transform.childCount;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        totalgrids = this.transform.childCount;
-        grids = new GameObject[GridY, GridX];
-
-
+        if(grids == null)
+        {
+            grids = new GameObject[GridY, GridX];
+        } 
+        List<List<string>> mapData = csvParser.getMapdata();
         for (int i = 0; i < GridY; i++)
         {
+            List<string> row = mapData[i];
+            row.Reverse();
             for (int j = 1; j < GridX+1; j++)
             {
                 grids[i, j-1] = this.transform.GetChild(i*9+j-1).gameObject;
                 this.transform.GetChild(i * 9 + j - 1).gameObject.GetComponent<GridTile>().setTileXY(j-1,i);
+                grid.Add(grids[i, j - 1]);
+                LoadMapData(grids[i, j - 1], row[j-1]);
+              
             }
 
-           // Debug.Log(grids[i, 5]);
-            
         }
 
     }
-
-    // Update is called once per frame
-    void Update()
+   private void LoadMapData(GameObject grid, string data)
     {
-        
-    }
+        if (data == "0")
+        {
+            grid.GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
 
-    /*
-   private void LoadMapData()
-    {
+        }
+        else if (data == "1")
+        {
+            grid.GetComponent<GridTile>().ChangeState(GridTile.TileState.Allypos);
+        }
+        else if (data == "2")
+        {
+            grid.GetComponent<GridTile>().ChangeState(GridTile.TileState.Enemypos);
+        }
 
     }
-    */
+    
     public List<GameObject> SearchTile(GameObject starttile, int range)
     {      
         int Xcoordinate = starttile.GetComponent<GridTile>().getTileX();
@@ -114,6 +128,23 @@ public class BattleGrid : MonoBehaviour
     {
         GameObject currentgrid = grids[y, x];
         return currentgrid;
+    }
+
+    public List<GameObject> FindPosTile(GridTile.TileState tileState)
+    {
+        List<GameObject> tempTileList = new List<GameObject>();
+
+        for (int i = 0; i < GridY; i++)
+        {
+            for (int j = 1; j < GridX + 1; j++)
+            {
+                if(grids[i, j - 1].GetComponent<GridTile>().getState() == tileState)
+                {
+                    tempTileList.Add(grids[i, j - 1]);
+                }          
+            }
+        }
+        return tempTileList;
     }
 }
 

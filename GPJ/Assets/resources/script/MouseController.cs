@@ -9,11 +9,14 @@ public class MouseController : MonoBehaviour
     private GameObject currentObject;
 
     private Cursor cursor;
-  
+
+    private BattleGrid battleGrid;
+    private BattleSystem battleSystem;
     // Start is called before the first frame update
     void Start()
     {
-        
+        battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
+        battleSystem = GameObject.Find("Camera").GetComponent<BattleSystem>();
     }
 
     // Update is called once per frame
@@ -40,39 +43,44 @@ public class MouseController : MonoBehaviour
                         {
                             break;
                         }
-                        GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
+                        battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
                         currentObject.GetComponent<characterAction>().setMoveGrid(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
-                        GameObject.Find("BattleGrid").GetComponent<BattleGrid>().resetTileState();
+                        battleGrid.resetTileState();
                         break;
 
                     case GridTile.TileState.Allypos:
-                        if (isMoveTIle == GridTile.MoveTile.CantTile || GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y) == hit.collider.gameObject)
+                        if (isMoveTIle == GridTile.MoveTile.CantTile || battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y) == hit.collider.gameObject)
                         {
                             break;
                         }
-                        else if(isMoveTIle == GridTile.MoveTile.CanMoveTile && GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().getState() == tileState)
+                        else if(isMoveTIle == GridTile.MoveTile.CanMoveTile && battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().getState() == tileState)
                         {
-                            GameObject hitObject = GameObject.Find("Camera").GetComponent<BattleSystem>().FindCharacter(hit.collider.gameObject.GetComponent<GridTile>().getTileX(), hit.collider.gameObject.GetComponent<GridTile>().getTileY());
-                            currentObject.GetComponent<characterAction>().switchPosition(hitObject);                        
-                            GameObject.Find("BattleGrid").GetComponent<BattleGrid>().resetTileState();
+                            GameObject hitObject = battleSystem.FindCharacter(hit.collider.gameObject.GetComponent<GridTile>().getTileX(), hit.collider.gameObject.GetComponent<GridTile>().getTileY());
+                            currentObject.GetComponent<characterAction>().switchPosition(hitObject);
+                            battleGrid.resetTileState();
                             break;
                         }
                         else
                         {
-                            GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
+                            battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
                             currentObject.GetComponent<characterAction>().setAtackObject(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
-                            GameObject.Find("BattleGrid").GetComponent<BattleGrid>().resetTileState();
+                            GameObject attackedObject2 = battleSystem.FindCharacter(hit.collider.gameObject.GetComponent<GridTile>().getTileX(), hit.collider.gameObject.GetComponent<GridTile>().getTileY());
+                            attackedObject2.GetComponent<characterAction>().isAttacking = true;
+                            Debug.Log(attackedObject2);
+                            battleGrid.resetTileState();
                             break;
                         }                      
 
                     case GridTile.TileState.Enemypos:
-                        if (isMoveTIle == GridTile.MoveTile.CantTile || GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y) == hit.collider.gameObject)
+                        if (isMoveTIle == GridTile.MoveTile.CantTile || battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y) == hit.collider.gameObject)
                         {
                             break;
                         }
-                        GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
+                        battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
                         currentObject.GetComponent<characterAction>().setAtackObject(hit.collider.gameObject.GetComponent<GridTile>().getTIle());
-                        GameObject.Find("BattleGrid").GetComponent<BattleGrid>().resetTileState();
+                        GameObject attackedObject = battleSystem.FindCharacter(hit.collider.gameObject.GetComponent<GridTile>().getTileX(), hit.collider.gameObject.GetComponent<GridTile>().getTileY());
+                        attackedObject.GetComponent<characterAction>().isAttacking = true;
+                        battleGrid.resetTileState();
                         break;
 
                     case GridTile.TileState.Obstacle:

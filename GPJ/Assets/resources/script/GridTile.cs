@@ -45,10 +45,10 @@ public class GridTile : MonoBehaviour
     void Update()
     {
 
-        SwichColorTile();
+        SwichTile();
     }
 
-    private void SwichColorTile()
+    private void SwichTile()
     {
 
         switch(currentMoveTile)
@@ -166,11 +166,17 @@ public class GridTile : MonoBehaviour
         spriteRenderer.color = new Color(0.6f, 0.6f, 0.6f, 0.25f);
     }
 
+
+
+
    private void setTileAnimation(float r, float g, float b, float a)
     {
         animator.SetBool("CanMove", true);
         animator.SetBool("isIdle", false);
         spriteRenderer.color = new Color(r, g, b, a);
     }
+
+
+
 
 }
