@@ -2508,14 +2508,14 @@ MonoBehaviour:
   AllyCharater:
   - {fileID: 2956816343440474318, guid: bd3381f64f7bcd9499ce84201d91dd04, type: 3}
   - {fileID: 2956816343440474318, guid: bd3381f64f7bcd9499ce84201d91dd04, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2956816343440474318, guid: bd3381f64f7bcd9499ce84201d91dd04, type: 3}
+  - {fileID: 2956816343440474318, guid: bd3381f64f7bcd9499ce84201d91dd04, type: 3}
   - {fileID: 0}
   EnemyCharater:
   - {fileID: 63846247390384382, guid: fe462a1e4b5553d4f954c3f33eb313e4, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 63846247390384382, guid: fe462a1e4b5553d4f954c3f33eb313e4, type: 3}
+  - {fileID: 63846247390384382, guid: fe462a1e4b5553d4f954c3f33eb313e4, type: 3}
+  - {fileID: 63846247390384382, guid: fe462a1e4b5553d4f954c3f33eb313e4, type: 3}
   - {fileID: 0}
 --- !u!1 &538851044
 GameObject:

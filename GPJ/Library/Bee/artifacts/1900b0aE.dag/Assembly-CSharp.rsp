@@ -120,6 +120,8 @@
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"Assets/Plugins/ExcelDataReader.DataSet.dll"
+-r:"Assets/Plugins/ExcelDataReader.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/2022.3.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -381,6 +383,7 @@
 "Assets/resources/script/CharacterInfoManager.cs"
 "Assets/resources/script/CharacterStats.cs"
 "Assets/resources/script/CSVParser.cs"
+"Assets/resources/script/EXCELParser.cs"
 "Assets/resources/script/GameManager.cs"
 "Assets/resources/script/GridTile.cs"
 "Assets/resources/script/MouseController.cs"

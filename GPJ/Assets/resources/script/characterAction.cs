@@ -104,6 +104,7 @@ public class characterAction : MonoBehaviour
 
             case CharacterState.Die:
                 isDie();
+
                 break;
         }
     }
@@ -114,49 +115,6 @@ public class characterAction : MonoBehaviour
 
 
     /*-------------------------------------------------------*/
-
-    private void UpdateState(CharacterState characterState)
-    {
-        switch(characterState)
-        {
-            case CharacterState.Idle:
-                break;
-
-            case CharacterState.Attack:
-                break;
-
-            case CharacterState.Move:
-                break;
-
-            case CharacterState.Hit:
-                break;
-
-            case CharacterState.Die:
-                break;
-        }
-    }
-
-    private void EnterState(CharacterState characterState)
-    {
-        switch (characterState)
-        {
-            case CharacterState.Idle:
-                break;
-
-            case CharacterState.Attack:
-                break;
-
-            case CharacterState.Move:
-
-                break;
-
-            case CharacterState.Hit:
-                break;
-
-            case CharacterState.Die:
-                break;
-        }
-    }
 
     public void ChangeState(CharacterState updateState)
     {
@@ -175,6 +133,7 @@ public class characterAction : MonoBehaviour
     {
         animator.SetBool("isMove", true);
         target = MovedPath[0].transform.position + new Vector3(0, 0.6f, 0);
+
         if (target.x  < this.transform.position.x)
         {
             this.GetComponentInChildren<SpriteRenderer>().flipX = true;
@@ -183,8 +142,10 @@ public class characterAction : MonoBehaviour
         {
             this.GetComponentInChildren<SpriteRenderer>().flipX = false;
         }   
+
         this.transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime*5);
         this.gameObject.GetComponent<CharacterStats>().setCharacterPos(new Vector2(moveTile.GetComponent<GridTile>().getTileX(), moveTile.GetComponent<GridTile>().getTileY()));
+
         if(this.gameObject.CompareTag("Ally"))
         {
             moveTile.GetComponent<GridTile>().ChangeState(GridTile.TileState.Allypos);
@@ -207,6 +168,7 @@ public class characterAction : MonoBehaviour
         GameObject tile = this.gameObject.GetComponentInParent<characterAction>().AttackObject;       
         GameObject enemy = battleSystem.FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY());
         enemy.GetComponent<characterAction>().setIncomeDamage(this.gameObject.GetComponent<CharacterStats>().getDamage());
+
         if (enemy.GetComponent<characterAction>().characterState != CharacterState.Hit && enemy.GetComponent<characterAction>().isAttacking == true)
         {
             enemy.GetComponent<characterAction>().ChangeState(CharacterState.Hit);

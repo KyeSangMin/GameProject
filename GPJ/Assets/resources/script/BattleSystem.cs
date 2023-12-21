@@ -29,7 +29,7 @@ public class BattleSystem : MonoBehaviour
     private BattleGrid battleGrid;
     private MouseController MouseController;
     private CharacterInfoManager characterInfoManager;
-    
+     
   
     private List<Tuple<GameObject, int>> PriorityQueue = new List<Tuple<GameObject, int>>();
 
@@ -94,12 +94,13 @@ public class BattleSystem : MonoBehaviour
     }
 
 
-
+    public void updateIncreaseSpeed()
+    {
+        currentState = Battlestate.IncreaseGauge;
+    }
  
     private void loadActionCharacter()
     {
-
-         
         for (int i = 0; i < allyCharList.Count + enemyCharList.Count; i++) 
         {
             if (i < allyCharList.Count)
@@ -110,12 +111,8 @@ public class BattleSystem : MonoBehaviour
             {
                 ActionCharacterList.Add(enemyCharList[i - allyCharList.Count]);
             }
-
-            SpeedGaugeList.Add(0);
-           
+            SpeedGaugeList.Add(0);  
         }
-
-
     }
 
     private void CreateCharatertoGrid()
@@ -347,28 +344,7 @@ public class BattleSystem : MonoBehaviour
 
     public void DestroyCharacter(GameObject gameObject)
     {
-        /*
-        for (int i = 0; i < allyChars.Length + enemyChars.Length; i++)
-        {
-            if (i < allyChars.Length && ActionCharacters[i] == gameObject)
-            {
-                //ActionCharacters = ActionCharacters.Where(condition => ActionCharacters[i]).ToArray();
-                //allyChars = allyChars.Where(condition => allyChars[i]).ToArray();
-                ActionCharacters[i] = null;
-                allyChars[i] = null;
-                SpeedGaugeList.RemoveAt(i);
-            }
-            else if(ActionCharacters[i] == gameObject)
-            {
-                //ActionCharacters = ActionCharacters.Where(condition => ActionCharacters[i]).ToArray();
-                ActionCharacters[i] = null;
-                //enemyChars = enemyChars.Where(condition => enemyChars[i - allyChars.Length]).ToArray();
-                enemyChars[i - allyChars.Length] = null;
-                SpeedGaugeList.RemoveAt(i);
-            }
-
-        }
-        */
+        
         for (int i = 0; i < allyCharList.Count + enemyCharList.Count; i++)
         {
             if (i < allyCharList.Count && ActionCharacterList[i] == gameObject)
@@ -389,13 +365,14 @@ public class BattleSystem : MonoBehaviour
         {
             turnedObejct = null;
         }
+        /*
         else if(PriorityQueue[0].Item1 == gameObject)
         {
             PriorityQueue.RemoveAt(0);
             
         }
-
+        */
     }
-   
+
 
 }

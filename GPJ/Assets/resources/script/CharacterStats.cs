@@ -21,9 +21,9 @@ public class CharacterStats : MonoBehaviour
     {
         Range = 3;
         Speed = 100;
-        MaxHP = 100;
+        MaxHP = 30;
         CurrentHP = MaxHP;
-        Damage = 50;
+        Damage = 30;
         //position = new Vector2(0, 0);
     }
 
@@ -36,14 +36,16 @@ public class CharacterStats : MonoBehaviour
 
     public int getSpeed()
     {
-        return Speed;
+
+        int random = Random.Range(10, 30);
+        return Speed + random; 
     }
 
     public int getRange()
     {
         return Range;
     }
-
+     
     public void setCharacterPos(Vector2 inputpostion)
     {
         position = inputpostion;

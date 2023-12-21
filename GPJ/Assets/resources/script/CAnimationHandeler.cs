@@ -26,9 +26,10 @@ public class CAnimationHandeler : MonoBehaviour
     {
         GameObject parent = this.gameObject.GetComponentInParent<characterAction>().gameObject;
         battleGrid.FindGridTIle((int)parent.GetComponent<CharacterStats>().getCharacterPos().x, (int)parent.GetComponent<CharacterStats>().getCharacterPos().y).GetComponent<GridTile>().ChangeState(GridTile.TileState.None);
-        battleGrid.resetTileState();
-        battleSystem.DestroyCharacter(parent);       
+        //battleGrid.resetTileState();
+        battleSystem.DestroyCharacter(parent);
         Destroy(this.gameObject.transform.parent.gameObject);
+        //battleSystem.updateIncreaseSpeed();
     }
     
 

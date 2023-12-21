@@ -50,7 +50,6 @@ public class GridTile : MonoBehaviour
 
     private void SwichTile()
     {
-
         switch(currentMoveTile)
         {
             case MoveTile.CanMoveTile:
