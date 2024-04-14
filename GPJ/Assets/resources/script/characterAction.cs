@@ -12,7 +12,8 @@ public class characterAction : MonoBehaviour
         Move,
         Attack,
         Hit,
-        Die
+        Die,
+        CounterAttack
     }
     private Animator animator;
     private BattleSystem battleSystem;
@@ -96,7 +97,7 @@ public class characterAction : MonoBehaviour
                         ChangeState(CharacterState.Die);
                         break;
                     }
-                    ChangeState(CharacterState.Idle);      
+                    ChangeState(CharacterState.CounterAttack);      
                     break;
                 }
                 isHit();
@@ -104,8 +105,13 @@ public class characterAction : MonoBehaviour
 
             case CharacterState.Die:
                 isDie();
-
                 break;
+
+            case CharacterState.CounterAttack:
+                isCounterAttack();
+                break;
+
+                
         }
     }
 
@@ -191,6 +197,7 @@ public class characterAction : MonoBehaviour
         animator.SetBool("isHit",true);
         isAttacking = false;
         this.GetComponent<CharacterStats>().setHP(true, IncomeDamage);
+
     }
 
     private void isDie()
@@ -198,6 +205,14 @@ public class characterAction : MonoBehaviour
         animator.SetBool("isdead", true);
     }
 
+    private void isCounterAttack()
+    {
+        animator.SetBool("isAttack", true);
+        ChangeState(CharacterState.Idle);
+
+    }
+
+    //********************************************************************************//
     public void setIncomeDamage(int damage)
     {
         IncomeDamage = damage;

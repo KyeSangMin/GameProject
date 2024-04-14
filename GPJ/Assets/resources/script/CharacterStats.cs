@@ -15,15 +15,17 @@ public class CharacterStats : MonoBehaviour
     [SerializeField]
     private Vector2 position;
 
-
+    private HPController hpController;
 
     void Start()
     {
-        Range = 3;
+        hpController = gameObject.GetComponentInChildren<HPController>();
+
+        Range = 2;
         Speed = 100;
         MaxHP = 30;
         CurrentHP = MaxHP;
-        Damage = 30;
+        Damage = 3;
         //position = new Vector2(0, 0);
     }
 
@@ -63,6 +65,7 @@ public class CharacterStats : MonoBehaviour
             return;
         }
         CurrentHP = CurrentHP - damage;
+        hpController.updateHPText(CurrentHP);
         IsAttack = false;
     }
     public int getDamage()
@@ -73,6 +76,11 @@ public class CharacterStats : MonoBehaviour
     public int getCurrentHP()
     {
         return CurrentHP;
+    }
+
+    public int getMaxHP()
+    {
+        return MaxHP;
     }
 
 }

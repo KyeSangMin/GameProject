@@ -77,10 +77,151 @@ public static class AStarSearch
         }
         return aroundTile;
     }
+    public static GameObject bfsDistanceSearch(GameObject StartObject, int range)
+    {
+        GameObject targetObejct = null;
+        GameObject AllyObejct = null;
+        List<GameObject> aroundTile = new List<GameObject>();
+        Queue<GameObject> frontier = new Queue<GameObject>();
+        Dictionary<GameObject, int> distances = new Dictionary<GameObject, int>();
+        GameObject start = StartObject;
+        float targetDistance = 10000f;
+        frontier.Enqueue(start);
+        aroundTile.Add(start);
+        distances[start] = 0;
+
+        while (frontier.Count != 0)
+        {
+            GameObject current = frontier.Dequeue();
+            int currentDistance = distances[current];
+
+            foreach (GameObject next in current.gameObject.GetComponent<GridTile>().getSreach(1))
+            {
+                
+                if(!aroundTile.Contains(next) && next.GetComponent<GridTile>().getState() == GridTile.TileState.Allypos && targetDistance > heuristic(start,next) && currentDistance <= range) // 범위 내 아군 캐릭터 있을경우
+                {
+                    AllyObejct = next;
+                    targetObejct = next;
+                    targetDistance = heuristic(start, next);
+                    Debug.Log(targetObejct);
+                    Debug.Log(targetDistance);
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+                }
+                
+                else if (!aroundTile.Contains(next) && AllyObejct == null && next.GetComponent<GridTile>().getState() != GridTile.TileState.Enemypos && currentDistance <= range-1) // 범위 내 아군 캐릭터 없을경우 
+                {
+                    if (targetDistance > heuristic(bfsNearbySearch(start), next))
+                    {
+                        targetObejct = next;
+                        targetDistance = heuristic(bfsNearbySearch(start), next);
+                        
+                    }
+                    Debug.Log(targetObejct);
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+
+                }
+            }
+        }
+        return targetObejct;
+    }
+
+    public static GameObject bfsNearbySearch(GameObject StartObject)
+    {
+        GameObject targetObejct = null;
+        List<GameObject> aroundTile = new List<GameObject>();
+        Queue<GameObject> frontier = new Queue<GameObject>();
+        Dictionary<GameObject, int> distances = new Dictionary<GameObject, int>();
+        GameObject start = StartObject;
+        frontier.Enqueue(start);
+        aroundTile.Add(start);
+        distances[start] = 0;
+
+        while (frontier.Count != 0)
+        {
+            GameObject current = frontier.Dequeue();
+            int currentDistance = distances[current];
+
+            foreach (GameObject next in current.gameObject.GetComponent<GridTile>().getSreach(1))
+            {
+                if (!aroundTile.Contains(next) && currentDistance + 1 <= 13)
+                {
+                    if(next.GetComponent<GridTile>().getState() == GridTile.TileState.Allypos)
+                    {
+                        targetObejct = next;
+                        break;
+                    }
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+                }
+            }
+            if (targetObejct != null) // 원하는 타일을 찾았을 때 루프 종료
+            {
+                break;
+            }
+        }
+     
+
+        return targetObejct;
+    }
+
+    public static GameObject bfsFarawaySearch(GameObject StartObject, int range)
+    {
+        GameObject targetObejct = null;
+        GameObject AllyObejct = null;
+        List<GameObject> aroundTile = new List<GameObject>();
+        Queue<GameObject> frontier = new Queue<GameObject>();
+        Dictionary<GameObject, int> distances = new Dictionary<GameObject, int>();
+        GameObject start = StartObject;
+        float targetDistance = 0f;
+        frontier.Enqueue(start);
+        aroundTile.Add(start);
+        distances[start] = 0;
+
+        while (frontier.Count != 0)
+        {
+            GameObject current = frontier.Dequeue();
+            int currentDistance = distances[current];
+
+            foreach (GameObject next in current.gameObject.GetComponent<GridTile>().getSreach(1))
+            {
+
+                if (!aroundTile.Contains(next) && next.GetComponent<GridTile>().getState() == GridTile.TileState.Allypos && targetDistance < heuristic(start, next) && currentDistance <= range) // 범위 내 아군 캐릭터 있을경우
+                {
+                    AllyObejct = next;
+                    targetObejct = next;
+                    targetDistance = heuristic(start, next);
+                    Debug.Log(targetObejct);
+                    Debug.Log(targetDistance);
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+                }
+
+                else if (!aroundTile.Contains(next) && AllyObejct == null && next.GetComponent<GridTile>().getState() != GridTile.TileState.Enemypos && currentDistance <= range - 1) // 범위 내 아군 캐릭터 없을경우 
+                {
+                    if (targetDistance < heuristic(bfsNearbySearch(start), next))
+                    {
+                        targetObejct = next;
+                        targetDistance = heuristic(bfsNearbySearch(start), next);
+
+                    }
+                    Debug.Log(targetObejct);
+                    frontier.Enqueue(next);
+                    aroundTile.Add(next);
+                    distances[next] = currentDistance + 1;
+
+                }
+            }
+        }
+        return targetObejct;
 
 
-
-
+    }
     private static float Cost(GameObject current, GameObject Next)
     {
         return Vector2.Distance(current.transform.position, Next.transform.position);

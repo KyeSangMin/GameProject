@@ -29,7 +29,7 @@ public class BattleSystem : MonoBehaviour
     private BattleGrid battleGrid;
     private MouseController MouseController;
     private CharacterInfoManager characterInfoManager;
-     
+    private AIController aIController;
   
     private List<Tuple<GameObject, int>> PriorityQueue = new List<Tuple<GameObject, int>>();
 
@@ -41,6 +41,7 @@ public class BattleSystem : MonoBehaviour
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
         MouseController = GameObject.Find("Camera").GetComponent<MouseController>();
         characterInfoManager = GameObject.Find("Camera").GetComponent<CharacterInfoManager>();
+        aIController = GameObject.Find("Camera").GetComponent<AIController>();
         currentState = Battlestate.IncreaseGauge;
         CreateCharatertoGrid();
         loadActionCharacter();
@@ -83,7 +84,8 @@ public class BattleSystem : MonoBehaviour
                     ChangeState(Battlestate.IncreaseGauge);
                     break;
                 }
-                AllyTrun();
+                //AllyTrun();
+                EnemyTrun();
                 break;
 
             case Battlestate.EndBattle:
@@ -271,7 +273,8 @@ public class BattleSystem : MonoBehaviour
         {
             SearchAnimation();
             ChangeState(Battlestate.AllyTrun);
-           
+            
+
         }
         else if (actionCharacters.CompareTag("Enemy"))
         {
@@ -303,6 +306,7 @@ public class BattleSystem : MonoBehaviour
     //allytrun
     private void AllyTrun()
     {
+        //SearchAnimation();
         MouseController.setCurrentObject(turnedObejct);
     }
 
@@ -311,7 +315,9 @@ public class BattleSystem : MonoBehaviour
     //enemytrun
     private void EnemyTrun()
     {
-
+        aIController.setEnemyAI(false);
+        aIController.setcurrentObject(turnedObejct);
+        MouseController.setCurrentObject(turnedObejct);
     }
 
 
