@@ -103,8 +103,6 @@ public static class AStarSearch
                     AllyObejct = next;
                     targetObejct = next;
                     targetDistance = heuristic(start, next);
-                    Debug.Log(targetObejct);
-                    Debug.Log(targetDistance);
                     frontier.Enqueue(next);
                     aroundTile.Add(next);
                     distances[next] = currentDistance + 1;
@@ -112,13 +110,14 @@ public static class AStarSearch
                 
                 else if (!aroundTile.Contains(next) && AllyObejct == null && next.GetComponent<GridTile>().getState() != GridTile.TileState.Enemypos && currentDistance <= range-1) // 범위 내 아군 캐릭터 없을경우 
                 {
-                    if (targetDistance > heuristic(bfsNearbySearch(start), next))
+             
+                    if (targetDistance > heuristicforbfsNearbySearch(bfsNearbySearch(start), next))
                     {
                         targetObejct = next;
-                        targetDistance = heuristic(bfsNearbySearch(start), next);
+                        targetDistance = heuristicforbfsNearbySearch(bfsNearbySearch(start), next);
                         
                     }
-                    Debug.Log(targetObejct);
+           
                     frontier.Enqueue(next);
                     aroundTile.Add(next);
                     distances[next] = currentDistance + 1;
@@ -164,8 +163,9 @@ public static class AStarSearch
                 break;
             }
         }
-     
 
+        //Debug.Log("bfsNearbySearch");
+        //Debug.Log(targetObejct);
         return targetObejct;
     }
 
@@ -195,8 +195,6 @@ public static class AStarSearch
                     AllyObejct = next;
                     targetObejct = next;
                     targetDistance = heuristic(start, next);
-                    Debug.Log(targetObejct);
-                    Debug.Log(targetDistance);
                     frontier.Enqueue(next);
                     aroundTile.Add(next);
                     distances[next] = currentDistance + 1;
@@ -210,7 +208,6 @@ public static class AStarSearch
                         targetDistance = heuristic(bfsNearbySearch(start), next);
 
                     }
-                    Debug.Log(targetObejct);
                     frontier.Enqueue(next);
                     aroundTile.Add(next);
                     distances[next] = currentDistance + 1;
@@ -230,9 +227,19 @@ public static class AStarSearch
 
     private static float heuristic(GameObject End, GameObject Next)
     {
+
         return Vector2.Distance(End.transform.position, Next.transform.position);
     }
 
-
+    private static float heuristicforbfsNearbySearch(GameObject End, GameObject Next)
+    {
+        
+        if(End == null)
+        {
+            return Vector2.Distance(Next.transform.position, Next.transform.position);
+        }
+        
+        return Vector2.Distance(End.transform.position, Next.transform.position);
+    }
 
 }

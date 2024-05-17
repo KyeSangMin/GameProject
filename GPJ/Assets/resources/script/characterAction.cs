@@ -32,7 +32,8 @@ public class characterAction : MonoBehaviour
     {
         animator = gameObject.GetComponentInChildren<Animator>();
         isAttacking = false;
-        battleSystem = GameObject.Find("Camera").GetComponent<BattleSystem>();
+        battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
+
     }
 
     // Update is called once per frame
@@ -207,7 +208,12 @@ public class characterAction : MonoBehaviour
 
     private void isCounterAttack()
     {
-        animator.SetBool("isAttack", true);
+        int i = Random.Range(1,10);
+        if (i % 2 ==3)
+        {
+            animator.SetBool("isAttack", true);
+        }
+        
         ChangeState(CharacterState.Idle);
 
     }
@@ -221,7 +227,7 @@ public class characterAction : MonoBehaviour
     public void setMoveGrid(GameObject GridTile)
     {
         moveTile = GridTile;
-        GameObject.Find("Camera").GetComponent<MouseController>().initCurrentObject();
+        GameObject.Find("BattleSystem").GetComponent<MouseController>().initCurrentObject();
         SetMovedPath();
     }
 
@@ -245,9 +251,26 @@ public class characterAction : MonoBehaviour
         {
             return;
         }
+        Vector2 position = this.gameObject.GetComponent<CharacterStats>().getCharacterPos();
+        GameObject tile = GameObject.Find("BattleGrid").GetComponent<BattleGrid>().FindGridTIle((int)position.x, (int)position.y);
         moveTile = SearchAtackTile(AttackObject);
+        //Debug.Log(moveTile);
+        if(moveTile == tile)
+        {
+           
+            if(gameObject.CompareTag("Ally"))
+            {
+                tile.GetComponent<GridTile>().ChangeState(GridTile.TileState.Allypos);
+            }
+            else
+            {
+                tile.GetComponent<GridTile>().ChangeState(GridTile.TileState.Enemypos);
+            }
+            GameObject.Find("BattleSystem").GetComponent<MouseController>().initCurrentObject();
+            return;
+        }
         setMoveGrid(moveTile);
-        GameObject.Find("Camera").GetComponent<MouseController>().initCurrentObject();
+        GameObject.Find("BattleSystem").GetComponent<MouseController>().initCurrentObject();
     }
 
     public void switchPosition(GameObject ally2)

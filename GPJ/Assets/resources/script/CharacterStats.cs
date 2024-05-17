@@ -17,15 +17,52 @@ public class CharacterStats : MonoBehaviour
 
     private HPController hpController;
 
+
+    public enum CharacterType {
+        Aggressive,
+        Defensive,
+        Agile
+
+    }
+    [SerializeField]
+    public struct PlayerStats
+    {
+        [SerializeField]
+        public int health;
+        [SerializeField]
+        public int maxhealth;
+        public int attackDamage;
+        public int range;
+        public int speed;
+
+        // 생성자 정의
+        public PlayerStats(int health, int maxhealth, int attackDamage, int range, int speed)
+        {
+            this.health = health;
+            this.maxhealth = maxhealth;
+            this.attackDamage = attackDamage;
+            this.range = range;
+            this.speed = speed;
+        }
+    }
+
+    private PlayerStats playerStats;
+
+    private void Awake()
+    {
+        playerStats.health = 100;
+    }
+
     void Start()
     {
-        hpController = gameObject.GetComponentInChildren<HPController>();
 
-        Range = 2;
-        Speed = 100;
-        MaxHP = 30;
-        CurrentHP = MaxHP;
-        Damage = 3;
+        hpController = gameObject.GetComponentInChildren<HPController>();
+        playerStats = new PlayerStats(300, 300, 300, 2, 100);
+        //Range = 2;
+        //Speed = 100;
+        //MaxHP = 300;
+        //CurrentHP = MaxHP;
+        //Damage = 300;
         //position = new Vector2(0, 0);
     }
 
@@ -33,19 +70,20 @@ public class CharacterStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CurrentHP = playerStats.health;
+        Damage = playerStats.attackDamage;
     }
 
     public int getSpeed()
     {
 
         int random = Random.Range(10, 30);
-        return Speed + random; 
+        return playerStats.speed + random; 
     }
 
     public int getRange()
     {
-        return Range;
+        return playerStats.range;
     }
      
     public void setCharacterPos(Vector2 inputpostion)
@@ -64,23 +102,23 @@ public class CharacterStats : MonoBehaviour
         {
             return;
         }
-        CurrentHP = CurrentHP - damage;
-        hpController.updateHPText(CurrentHP);
+        playerStats.health = playerStats.health - damage;
+        //hpController.updateHPText(CurrentHP);
         IsAttack = false;
     }
     public int getDamage()
     {
-        return Damage;
+        return playerStats.attackDamage;
     }
 
     public int getCurrentHP()
     {
-        return CurrentHP;
+        return playerStats.health;
     }
 
     public int getMaxHP()
     {
-        return MaxHP;
+        return playerStats.maxhealth;
     }
 
 }

@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 0
-  CurrentHP: 0
+  CurrentHP: 10
   Damage: 0
   position: {x: 1, y: 3}
 --- !u!1 &2851714896359395354

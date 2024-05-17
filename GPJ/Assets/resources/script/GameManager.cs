@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager _instance;
+    //private static GameManager _instance;
 
-    public static GameManager Instance;
+    public static GameManager Instance = null;
 
+    private BattleSystem battleSystem;
+    private AIController aIController;
+    private MouseController mouseController;
+    private BattleGrid battleGrid;
+    private GridTile gridTile;
+    [SerializeField]
+    public bool isBattle { get; set; }
+    public bool isActiveAI { get; set; }
 
 
     private void Awake()
@@ -18,12 +26,15 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isBattle = true;
+        isActiveAI = true;
+
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class CAnimationHandeler : MonoBehaviour
     void Start()
     {
         animator = this.gameObject.GetComponent<Animator>();
-        battleSystem = GameObject.Find("Camera").GetComponent<BattleSystem>();
+        battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>(); 
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
     }
     // Update is called once per frame

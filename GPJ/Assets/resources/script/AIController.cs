@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AIController : MonoBehaviour
 {
+    private BattleSystem battleSystem;
+    private GameManager gameManager;
+
     //private BTNode rootnode;
     private SelectorNode rootnode;
     private BTNode root;
@@ -25,9 +28,11 @@ public class AIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mouseController = GameObject.Find("Camera").GetComponent<MouseController>(); 
-         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
+        gameManager = GameManager.Instance;
 
+        mouseController = GameObject.Find("BattleSystem").GetComponent<MouseController>(); 
+        battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
+        battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
 
         List<BTNode> rootChildren = new List<BTNode>();
 
@@ -70,7 +75,7 @@ public class AIController : MonoBehaviour
         rootChildren.Add(new SequenceNode(subSequenceFlee));
 
         // End ½ÃÄö½º 
-        //rootChildren.Add(new BTActionNode(endAction));
+        rootChildren.Add(new BTActionNode(endAction));
         
         root = new SelectorNode(rootChildren);
 
@@ -81,15 +86,21 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rootnode.Evaluate();
-        root.Evaluate();
-
-        if (!onOff1&&!onOff2&&!onOff3)
+        if(gameManager.isActiveAI)
         {
-            //onOff4 = false;
-            
-        }
+            if(!battleSystem.CheckAllyCharater())
+            {
 
+                //rootnode.Evaluate();
+                root.Evaluate();
+
+                if (!onOff1&&!onOff2&&!onOff3)
+                {
+                    //onOff4 = false;
+            
+                }
+            }
+        }
     }
 
 
@@ -103,8 +114,7 @@ public class AIController : MonoBehaviour
         }
 
         Vector2 _pos = currentPos;
-        Debug.Log(_pos);
-        Debug.Log("move");
+
         mouseController.inputAction(_pos);
         return BTNode.BTNodeState.Success;
     }
@@ -115,26 +125,10 @@ public class AIController : MonoBehaviour
         {
             return BTNode.BTNodeState.Failure;
         }
-        /*
-        GameObject currentTile = battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y);
-        GameObject tempObject = AStarSearch.bfsDistanceSearch(currentTile, 2);
-        if (tempObject.GetComponent<GridTile>().getState() == GridTile.TileState.Allypos)
-        {
-            Vector2 _pos = new Vector2(tempObject.transform.position.x - 0.5f, tempObject.transform.position.y);
-            Debug.Log(_pos);
-            mouseController.inputAction(_pos);
-        }
-        else
-        {
-            Debug.Log("Failed to move: Target tile is not empty.");
-            //onOff2 = true;
-            return BTNode.BTNodeState.Failure;
-        }
-        */
-        Debug.Log("Success Attack");
+  
+
         Vector2 _pos = currentPos;
-        Debug.Log(_pos);
-        Debug.Log("attack");
+
         mouseController.inputAction(_pos);
         return BTNode.BTNodeState.Success;
     }
@@ -148,20 +142,25 @@ public class AIController : MonoBehaviour
 
         GameObject currentTile = battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y);
         GameObject tempObject = AStarSearch.bfsFarawaySearch(currentTile, 2);
+        //Debug.Log(tempObject);
+        
+        if(tempObject == null)
+        {
+            return BTNode.BTNodeState.Success;
+        }
+        
         currentPos = new Vector2(tempObject.transform.position.x, tempObject.transform.position.y);
         Vector2 _pos = currentPos;
-        Debug.Log(_pos);
-        Debug.Log("attack");
         mouseController.inputAction(_pos);
 
 
-        Debug.Log("Success flee");
+
         return BTNode.BTNodeState.Success;
     }
 
     private BTNode.BTNodeState endAction()
     {
-        Debug.Log("Success end");
+
         onOff1 = false;
         onOff2 = false;
         onOff4 = true;
@@ -194,7 +193,7 @@ public class AIController : MonoBehaviour
         GameObject currentTile = battleGrid.FindGridTIle((int)currentObject.GetComponent<CharacterStats>().getCharacterPos().x, (int)currentObject.GetComponent<CharacterStats>().getCharacterPos().y);
         GameObject tempObject = AStarSearch.bfsDistanceSearch(currentTile, 2);
         currentPos = new Vector2(tempObject.transform.position.x, tempObject.transform.position.y);
-        Debug.Log(tempObject);
+
 
         if (tempObject.GetComponent<GridTile>().getState() == GridTile.TileState.None)
         {
@@ -203,18 +202,16 @@ public class AIController : MonoBehaviour
         }
         else
         {
-            Debug.Log("enter attack.");
+   
             onOff2 = true;
             return false;
         }
 
 
-        //return true;
     }
 
     private bool CheckEnemyHpTypeMove()
     {
-        //Debug.Log("Success check");
 
 
         if(currnetHp/maxHp * 100 >30 && onOff2 == false)
@@ -230,7 +227,6 @@ public class AIController : MonoBehaviour
 
     private bool CheckEnemyHpTypeAttack()
     {
-        //Debug.Log("Success check");
 
 
         return onOff2;
@@ -238,17 +234,17 @@ public class AIController : MonoBehaviour
 
     private bool CheckEnemyHpTypeFlee()
     {
-        //Debug.Log("Success check");
-        if (currnetHp / maxHp * 100 < 30 )
-        {
-            onOff3 = true;
-        }
-
+        
+               if (currnetHp / maxHp * 100 < 30 )
+               {
+                   onOff3 = true;
+               }
+        
         return onOff3;
     }
     private bool CheckEnemyTrun()
     {
-        //Debug.Log("Success check");
+ 
         /**
         if (currentObject == null)
         {
@@ -269,5 +265,8 @@ public class AIController : MonoBehaviour
         maxHp = _gameObject.GetComponent<CharacterStats>().getMaxHP();
         currnetHp = _gameObject.GetComponent<CharacterStats>().getCurrentHP();
     }
+
+
+
 
 }

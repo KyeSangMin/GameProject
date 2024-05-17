@@ -394,6 +394,9 @@
 "Assets/resources/script/GridTile.cs"
 "Assets/resources/script/HPController.cs"
 "Assets/resources/script/MouseController.cs"
+"Assets/resources/script/ScenesManager.cs"
+"Assets/resources/script/SoundManager.cs"
+"Assets/resources/script/UiButtonEvent.cs"
 -langversion:9.0
 
 /deterministic

@@ -15,6 +15,8 @@ public class BattleSystem : MonoBehaviour
         EndBattle
     }
 
+    private GameManager gameManager;
+
     private Battlestate currentState;
 
     public List<GameObject> allyCharList = new List<GameObject>();
@@ -38,10 +40,11 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start() 
     {
+        gameManager = GameManager.Instance;
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
-        MouseController = GameObject.Find("Camera").GetComponent<MouseController>();
+        MouseController = GameObject.Find("BattleSystem").GetComponent<MouseController>();
         characterInfoManager = GameObject.Find("Camera").GetComponent<CharacterInfoManager>();
-        aIController = GameObject.Find("Camera").GetComponent<AIController>();
+        aIController = GameObject.Find("BattleSystem").GetComponent<AIController>();
         currentState = Battlestate.IncreaseGauge;
         CreateCharatertoGrid();
         loadActionCharacter();
@@ -52,46 +55,50 @@ public class BattleSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(gameManager.isBattle);
 
-       
-        switch (currentState)
+        if(gameManager.isBattle)
         {
-            case Battlestate.IncreaseGauge:
-                UpdateSpeedGauge();
-                break;
-
-            case Battlestate.GivingTrun:
-                if (PriorityQueue.Count == 0)
-                {
-                    ChangeState(Battlestate.IncreaseGauge);
+       
+            switch (currentState)
+            {
+                case Battlestate.IncreaseGauge:
+                    UpdateSpeedGauge();
                     break;
-                }
-                ExecuteAction();
-                break;
 
-            case Battlestate.AllyTrun:
-                if(turnedObejct == null)
-                {
-                    ChangeState(Battlestate.IncreaseGauge);
+                case Battlestate.GivingTrun:
+                    if (PriorityQueue.Count == 0)
+                    {
+                        ChangeState(Battlestate.IncreaseGauge);
+                        break;
+                    }
+                    ExecuteAction();
                     break;
-                }
-                AllyTrun();
-                break;
 
-            case Battlestate.EnemyTrun:
-                if (turnedObejct == null)
-                {
-                    ChangeState(Battlestate.IncreaseGauge);
+                case Battlestate.AllyTrun:
+                    if(turnedObejct == null)
+                    {
+                        ChangeState(Battlestate.IncreaseGauge);
+                        break;
+                    }
+                    AllyTrun();
                     break;
-                }
-                //AllyTrun();
-                EnemyTrun();
-                break;
 
-            case Battlestate.EndBattle:
-                break;
+                case Battlestate.EnemyTrun:
+                    if (turnedObejct == null)
+                    {
+                        ChangeState(Battlestate.IncreaseGauge);
+                        break;
+                    }
+                    //AllyTrun();
+                    EnemyTrun();
+                    break;
+
+                case Battlestate.EndBattle:
+                    Endbattle();
+                    break;
+            }
         }
-
 
     }
 
@@ -186,6 +193,7 @@ public class BattleSystem : MonoBehaviour
         {
 
                 SpeedGaugeList[i] += ActionCharacterList[i].GetComponent<CharacterStats>().getSpeed();
+            Debug.Log("speed");
         } 
 
         StartCoroutine(SpeedGaugeDelay(0.35f));
@@ -213,13 +221,15 @@ public class BattleSystem : MonoBehaviour
 
     private void ExecuteAction()
     {
+        
         GameObject tempObject = Dequeue();
         for (int i = 0; i < allyCharList.Count + enemyCharList.Count; i++)
         {
             if (ActionCharacterList[i].Equals(tempObject))
             {
                 turnedObejct = tempObject;
-                CheckTurn(tempObject);
+
+                CheckTurn(turnedObejct);
 
             }
         }
@@ -264,6 +274,16 @@ public class BattleSystem : MonoBehaviour
 
     private void CheckTurn(GameObject actionCharacters)
     {
+        if(allyCharList.Count == 0)
+        {
+            ChangeState(Battlestate.EndBattle);
+            return;
+        }
+        if (enemyCharList.Count == 0)
+        {
+            ChangeState(Battlestate.EndBattle);
+            return;
+        }
 
         if (actionCharacters == null)
         {
@@ -271,6 +291,7 @@ public class BattleSystem : MonoBehaviour
         }
         if (actionCharacters.CompareTag("Ally"))
         {
+           
             SearchAnimation();
             ChangeState(Battlestate.AllyTrun);
             
@@ -278,6 +299,7 @@ public class BattleSystem : MonoBehaviour
         }
         else if (actionCharacters.CompareTag("Enemy"))
         {
+            StartCoroutine(Turndelay());
             SearchAnimation();
             ChangeState(Battlestate.EnemyTrun);
         }
@@ -379,6 +401,31 @@ public class BattleSystem : MonoBehaviour
         }
         */
     }
+
+    public bool CheckAllyCharater()
+    {
+
+        if(allyCharList.Count() == 0)
+        {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    private void Endbattle()
+    {
+        Debug.Log("endbattel");
+    }
+
+    IEnumerator Turndelay()
+    {
+        
+        yield return new WaitForSeconds(2.0f); // 3초 동안 대기
+        //ChangeState(Battlestate.EnemyTrun);
+    }
+
 
 
 }
