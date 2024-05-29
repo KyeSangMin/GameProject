@@ -8,12 +8,15 @@ public class CAnimationHandeler : MonoBehaviour
     Animator animator;
     BattleSystem battleSystem;
     BattleGrid battleGrid;
+
+    SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
         animator = this.gameObject.GetComponent<Animator>();
         battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>(); 
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
+        soundManager = SoundManager.Instance;
     }
     // Update is called once per frame
     private void AttackEnd()
@@ -31,6 +34,13 @@ public class CAnimationHandeler : MonoBehaviour
         Destroy(this.gameObject.transform.parent.gameObject);
         //battleSystem.updateIncreaseSpeed();
     }
+
     
+    private void PlaySFX(int sfxNum)
+    {
+    
+        AudioSource source = soundManager.sfxSorce.transform.GetChild(sfxNum).GetComponent<AudioSource>();
+        soundManager.PlayEffect(source.clip);
+    }
 
 }

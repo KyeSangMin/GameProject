@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScenes2.unity
     guid: edbd8e394ad08a44daeb8ce5f0671eda
+  - enabled: 1
+    path: Assets/Scenes/BattleScenes3.unity
+    guid: fb91cf43f2c93134897a6144dbb67a3c
+  - enabled: 1
+    path: Assets/Scenes/BattleScenes4.unity
+    guid: e800d9bfa2d6eb14686b589603a0a203
+  - enabled: 1
+    path: Assets/Scenes/BattleScenes5.unity
+    guid: 8b6743ec371fea248a963c1620100f0a
   m_configObjects: {}

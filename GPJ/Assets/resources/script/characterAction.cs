@@ -17,7 +17,6 @@ public class characterAction : MonoBehaviour
     }
     private Animator animator;
     private BattleSystem battleSystem;
-
     public CharacterState characterState;
     private List<GameObject> MovedPath = new List<GameObject>();
     private GameObject moveTile;
@@ -33,7 +32,6 @@ public class characterAction : MonoBehaviour
         animator = gameObject.GetComponentInChildren<Animator>();
         isAttacking = false;
         battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
-
     }
 
     // Update is called once per frame
@@ -93,6 +91,9 @@ public class characterAction : MonoBehaviour
                 if(!isAttacking)
                 {
                     animator.SetBool("isHit", false);
+                    
+
+                    
                     if (this.GetComponent<CharacterStats>().getCurrentHP() <= 0)
                     {
                         ChangeState(CharacterState.Die);
@@ -172,6 +173,7 @@ public class characterAction : MonoBehaviour
     private void isAttack()
     {
         animator.SetBool("isAttack", true);
+
         GameObject tile = this.gameObject.GetComponentInParent<characterAction>().AttackObject;       
         GameObject enemy = battleSystem.FindCharacter(tile.GetComponent<GridTile>().getTileX(), tile.GetComponent<GridTile>().getTileY());
         enemy.GetComponent<characterAction>().setIncomeDamage(this.gameObject.GetComponent<CharacterStats>().getDamage());
@@ -204,6 +206,7 @@ public class characterAction : MonoBehaviour
     private void isDie()
     {
         animator.SetBool("isdead", true);
+
     }
 
     private void isCounterAttack()

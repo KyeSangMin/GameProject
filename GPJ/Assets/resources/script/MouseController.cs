@@ -5,10 +5,10 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     private GameManager gameManager;
-    
+    private SoundManager soundManager;
     public int HelloWorld = 2;
 
-
+    private GameObject carddeck;
     private GameObject currentObject;
 
     private Cursor cursor;
@@ -19,8 +19,10 @@ public class MouseController : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
         battleSystem = GameObject.Find("BattleSystem").GetComponent<BattleSystem>();
+        carddeck = GameObject.Find("card_back");
     }
 
     // Update is called once per frame
@@ -30,11 +32,12 @@ public class MouseController : MonoBehaviour
         { 
             if (Input.GetMouseButtonDown(0))
             {
-                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);              
                 inputAction(pos);
             }
         }
     }
+
 
     public void setCurrentObject(GameObject Ally)
     {
@@ -50,6 +53,8 @@ public class MouseController : MonoBehaviour
     {
         currentObject = null;
     }
+
+    
     public void inputAction(Vector2 _pos)
     {
             Vector2 pos = _pos;
@@ -57,11 +62,27 @@ public class MouseController : MonoBehaviour
 
             if (hit.collider == null)
             {
-                return;
-            }
 
+                return;            
+            }
+            if(hit.collider.CompareTag("Card"))
+            {
+                return;
+            }    
+            if(hit.collider.CompareTag("CardDeck"))
+            {
+                gameManager.isCard = true;
+                
+            }
+            else
+            {
+                gameManager.isCard = false;
+                
+            }
+            
             if (hit.collider.CompareTag("GridTile") && currentObject != null)
             {
+
                 var tileState = hit.collider.gameObject.GetComponent<GridTile>().getState();
                 var isMoveTIle = hit.collider.gameObject.GetComponent<GridTile>().getTileState();
                 switch (tileState)

@@ -16,7 +16,7 @@ public class BattleSystem : MonoBehaviour
     }
 
     private GameManager gameManager;
-
+    private ScenesManager scenesManager;
     private Battlestate currentState;
 
     public List<GameObject> allyCharList = new List<GameObject>();
@@ -41,6 +41,7 @@ public class BattleSystem : MonoBehaviour
     void Start() 
     {
         gameManager = GameManager.Instance;
+        scenesManager = ScenesManager.Instance;
         battleGrid = GameObject.Find("BattleGrid").GetComponent<BattleGrid>();
         MouseController = GameObject.Find("BattleSystem").GetComponent<MouseController>();
         characterInfoManager = GameObject.Find("Camera").GetComponent<CharacterInfoManager>();
@@ -48,14 +49,14 @@ public class BattleSystem : MonoBehaviour
         currentState = Battlestate.IncreaseGauge;
         CreateCharatertoGrid();
         loadActionCharacter();
-
+        gameManager.TrunNum = 0;
 
     } 
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gameManager.isBattle);
+        //Debug.Log(gameManager.isBattle);
 
         if(gameManager.isBattle)
         {
@@ -63,10 +64,30 @@ public class BattleSystem : MonoBehaviour
             switch (currentState)
             {
                 case Battlestate.IncreaseGauge:
+                    if (allyCharList.Count == 0)
+                    {
+                        ChangeState(Battlestate.EndBattle);
+                        return;
+                    }
+                    if (enemyCharList.Count == 0)
+                    {
+                        ChangeState(Battlestate.EndBattle);
+                        return;
+                    }
                     UpdateSpeedGauge();
                     break;
 
                 case Battlestate.GivingTrun:
+                    if (allyCharList.Count == 0)
+                    {
+                        ChangeState(Battlestate.EndBattle);
+                        return;
+                    }
+                    if (enemyCharList.Count == 0)
+                    {
+                        ChangeState(Battlestate.EndBattle);
+                        return;
+                    }
                     if (PriorityQueue.Count == 0)
                     {
                         ChangeState(Battlestate.IncreaseGauge);
@@ -90,7 +111,6 @@ public class BattleSystem : MonoBehaviour
                         ChangeState(Battlestate.IncreaseGauge);
                         break;
                     }
-                    //AllyTrun();
                     EnemyTrun();
                     break;
 
@@ -192,11 +212,12 @@ public class BattleSystem : MonoBehaviour
         for (int i = 0; i < allyCharList.Count + enemyCharList.Count; i++)
         {
 
-                SpeedGaugeList[i] += ActionCharacterList[i].GetComponent<CharacterStats>().getSpeed();
-            Debug.Log("speed");
+            SpeedGaugeList[i] += ActionCharacterList[i].GetComponent<CharacterStats>().getSpeed();
+            ActionCharacterList[i].GetComponent<Health>().UpdateSpeedGauge(SpeedGaugeList[i]);
+
         } 
 
-        StartCoroutine(SpeedGaugeDelay(0.35f));
+        StartCoroutine(SpeedGaugeDelay(0.5f));
         CheckSpeedGauge();
     }
 
@@ -211,7 +232,6 @@ public class BattleSystem : MonoBehaviour
                 // 우선순위 큐 삽입
                 Enqueue(ActionCharacterList[i], SpeedGaugeList[i]);
                 SpeedGaugeList[i] -= 10000;
-
             }
 
         }
@@ -228,7 +248,7 @@ public class BattleSystem : MonoBehaviour
             if (ActionCharacterList[i].Equals(tempObject))
             {
                 turnedObejct = tempObject;
-
+                turnedObejct.GetComponent<Health>().UpdateSpeedGauge(-10000);
                 CheckTurn(turnedObejct);
 
             }
@@ -274,6 +294,7 @@ public class BattleSystem : MonoBehaviour
 
     private void CheckTurn(GameObject actionCharacters)
     {
+        gameManager.TrunNum++;
         if(allyCharList.Count == 0)
         {
             ChangeState(Battlestate.EndBattle);
@@ -416,7 +437,23 @@ public class BattleSystem : MonoBehaviour
 
     private void Endbattle()
     {
-        Debug.Log("endbattel");
+
+        if(enemyCharList.Count == 0)
+        {
+            if(gameManager.ScenesNum >= 5) 
+            {
+                gameManager.isOver = true;
+                return;
+            }
+            int scensenum = gameManager.ScenesNum +1 ;
+            string name = "BattleScenes" + scensenum.ToString();
+            gameManager.ScenesNum += 1;
+            scenesManager.LoadSceneWithLoadingScreen(name, 0.75f);
+        }
+        else
+        {
+            gameManager.isOver = true;
+        }
     }
 
     IEnumerator Turndelay()

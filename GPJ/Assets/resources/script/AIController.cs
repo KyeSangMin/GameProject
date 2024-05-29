@@ -213,16 +213,20 @@ public class AIController : MonoBehaviour
     private bool CheckEnemyHpTypeMove()
     {
 
-
-        if(currnetHp/maxHp * 100 >30 && onOff2 == false)
+        if(maxHp != 0)
         {
-            onOff1 = true;
-        }
-        else
-        {
-            onOff1 = false;
+            if (currnetHp / maxHp * 100 > 30 && onOff2 == false)
+            {
+                onOff1 = true;
+            }
+            else
+            {
+                onOff1 = false;
+            }
+            
         }
         return onOff1;
+
     }
 
     private bool CheckEnemyHpTypeAttack()

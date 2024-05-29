@@ -1,0 +1,1733 @@
+fileFormatVersion: 2
+guid: 0dce5f36de69ad14eb9de339637ffa3c
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: f1_kaisergladiator_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c065f4ec660f9f4eb9247168fbf0f05
+      internalID: 1943374968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a9fccdaba0f6d418fcd866838f638e
+      internalID: -95154770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_3
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b08624490185bc840bb209bcc7bf8268
+      internalID: 1727947195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_4
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1faa471ba5d9ccb4983012f999edb1f9
+      internalID: -1072439917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9c0c87b5573e7c4bbc7679827c6a632
+      internalID: 1207962819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_6
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3950c53e401333459a782d372a2698c
+      internalID: -1032681502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_7
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4210ce4f3e133e74c9758c8b5d24dda2
+      internalID: 494987454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_8
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f796c4767dd87e4a97096df27910401
+      internalID: 1872211861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_9
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b87c2ccbfb1a807428e8cecfc9ea8da4
+      internalID: -833219370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_10
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e5a44c58cf736249abf2ebcbb05d4cc
+      internalID: -197816096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d2b1d48d416c340866a3478adb5611
+      internalID: -1883008962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_12
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e809b41ed6293b648a297379d1db1461
+      internalID: 1586460118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_13
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f12b3c962be14d46a7219e25217447b
+      internalID: 386475432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_15
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62de07527434d8b458174b33374e79c9
+      internalID: 1347882531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_16
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057dd0e1cedf458469a4029b9679ecdb
+      internalID: 1686594299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_17
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45689817e8580b647b2abb2ac186fb8f
+      internalID: -1608127507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_18
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63d1ec8e0ee28574892fd93d734bb765
+      internalID: -955940111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_19
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c332d9627984546bebe53da361a9a8
+      internalID: 973692396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_20
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 625b18899b029194e893d23af95a2dd3
+      internalID: 1004059966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_21
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64f903de278fc345bacbed624fef35a
+      internalID: 1148600538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8a9bda3bee0384fac5ae647126550a
+      internalID: -213518127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_23
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 629e25b6ca4d3db4c9e454032620fb84
+      internalID: -409272212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_24
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f265b09d0ffde459664771bb15b5c1
+      internalID: 1053652049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_25
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1d5438bc00518b4d82fd2a9fdd2dd8d
+      internalID: -273204964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_26
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76900a71c9d96c847a5be43dde20e367
+      internalID: -608695359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_27
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 343b9c8ed73f81d4ca6b27662221d27f
+      internalID: -1848745404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_28
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dec3c44a6c2929439a420a24290f82f
+      internalID: -861169636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_29
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee196883c2373b745a526fbe768e534a
+      internalID: -988735092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_30
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1576a97112f584e4699c01eecc7603fd
+      internalID: 646821022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_31
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0289dff83b9083c4289e0b461dcdf1e2
+      internalID: 730735392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_32
+      rect:
+        serializedVersion: 2
+        x: 1300
+        y: 632
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7169ba88d9182048840b29867255ccc
+      internalID: -1900216905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b72146fb416c64386601cd5e9a56d6
+      internalID: -520647356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_34
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef106824c684ae44cb0cd099a62e5ac5
+      internalID: -1419890484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_35
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2765db2fe5eef4c41a00ad8a9ea3a7b3
+      internalID: 894632072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_36
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 133083513fc3fc843a0bf9693a5d4ead
+      internalID: 806636082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_37
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 464b9c7794f12844eb8b6be7e9439874
+      internalID: 1829506501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_38
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 240ba85d1cab03f489793b5feb58419d
+      internalID: 1008301605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_39
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca9fca11e631674ca9f50630b6d3435
+      internalID: 1006720876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_40
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b3d4f64ccbd3f469c736e6940ac014
+      internalID: 1680971762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_41
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0cb814b49e1cce4a8065f70d9b250ff
+      internalID: 681879321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_42
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 501
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902950c9d845d8146af929e3ae429afe
+      internalID: -794818484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1557133566d2bf7479c34f16325866a1
+      internalID: 569708971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_44
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d43e3038049daa4b9d74650b85dcd83
+      internalID: 1081543076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_45
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16016921080befe4b8849bfd8f3b1137
+      internalID: 462911458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_46
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6520d4f2d8bcd884f8d7500dfa527963
+      internalID: -679952649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_47
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e864af3c6e972a94dbfd53a6c148b766
+      internalID: 1388574677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_48
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4f509ae75e9ed741901f88d90e97ed8
+      internalID: 2018343561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_49
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0bb9e9827310d5459a7aa2abec7b526
+      internalID: -208149597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_50
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4072916bacf43428d08f4cd522c4c7
+      internalID: 1563174891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_51
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 515864c3722c2b244b58d8fa457aca18
+      internalID: 973950294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_52
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 370
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 758ae4299dc84294eb1e4771e69084b3
+      internalID: -308701238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_53
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31873c01b990da459a823bc0dea00e6
+      internalID: 559673559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_54
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf60d9eabf79b444283807596fe24a6f
+      internalID: -704088056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_55
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ab5c6f836f12140b1fb7140532cade
+      internalID: 1057270493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_56
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e8cbef43b15a94d806649a791bec16
+      internalID: -2008988343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_57
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7682b3eed38ced54d8d31d1b143a6ad0
+      internalID: 790481318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_58
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6c19356f34922d4bb43213b2c98572f
+      internalID: -632809452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_59
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71db55510081c934aa539523aaaa7fb3
+      internalID: -1539818261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_60
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8fba2828af9fad489f80d742e5a0337
+      internalID: 1332584421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_61
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 254ea045eba4fa14bb1dc8bf78cebf75
+      internalID: 1037503540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_62
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 239
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b60cb7c39ee1384793117828d3acd51
+      internalID: 961554957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9280b7fcd1846a9438b1e0bb08aba4b3
+      internalID: 2101313903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_64
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26ec12c4df573e143aa288883ab5d43b
+      internalID: -999786053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_65
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 101682532c699e24d87ff49e3c33e674
+      internalID: -1943796363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_66
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df89656f29729874ca6e1d391a3aea3e
+      internalID: -2015120602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_67
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 480272ed267dfc7458f8dc4c87473b31
+      internalID: -1703839129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_68
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fcf52f45e99bcb48a4d51c49c00a56c
+      internalID: 1548911144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_69
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a469f71ba597c0d40b33900b64450b70
+      internalID: 517650222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_70
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b7490823ac8f6b459fd7d78ee5d4b70
+      internalID: -1074432995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_71
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b885f48e640c5146b648d3d5af61a79
+      internalID: 503435585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_72
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 108
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 968921b33b4232043834d8e465d83082
+      internalID: 4499999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 894
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 136cbc4c57ba60e4cbb277f979d8e824
+      internalID: 529757424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: f1_kaisergladiator_14
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 763
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61aea918749683144b6694c52eb108a3
+      internalID: 451963707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      f1_kaisergladiator_0: 529757424
+      f1_kaisergladiator_1: 1943374968
+      f1_kaisergladiator_10: -197816096
+      f1_kaisergladiator_11: -1883008962
+      f1_kaisergladiator_12: 1586460118
+      f1_kaisergladiator_13: 386475432
+      f1_kaisergladiator_14: 451963707
+      f1_kaisergladiator_15: 1347882531
+      f1_kaisergladiator_16: 1686594299
+      f1_kaisergladiator_17: -1608127507
+      f1_kaisergladiator_18: -955940111
+      f1_kaisergladiator_19: 973692396
+      f1_kaisergladiator_2: -95154770
+      f1_kaisergladiator_20: 1004059966
+      f1_kaisergladiator_21: 1148600538
+      f1_kaisergladiator_22: -213518127
+      f1_kaisergladiator_23: -409272212
+      f1_kaisergladiator_24: 1053652049
+      f1_kaisergladiator_25: -273204964
+      f1_kaisergladiator_26: -608695359
+      f1_kaisergladiator_27: -1848745404
+      f1_kaisergladiator_28: -861169636
+      f1_kaisergladiator_29: -988735092
+      f1_kaisergladiator_3: 1727947195
+      f1_kaisergladiator_30: 646821022
+      f1_kaisergladiator_31: 730735392
+      f1_kaisergladiator_32: -1900216905
+      f1_kaisergladiator_33: -520647356
+      f1_kaisergladiator_34: -1419890484
+      f1_kaisergladiator_35: 894632072
+      f1_kaisergladiator_36: 806636082
+      f1_kaisergladiator_37: 1829506501
+      f1_kaisergladiator_38: 1008301605
+      f1_kaisergladiator_39: 1006720876
+      f1_kaisergladiator_4: -1072439917
+      f1_kaisergladiator_40: 1680971762
+      f1_kaisergladiator_41: 681879321
+      f1_kaisergladiator_42: -794818484
+      f1_kaisergladiator_43: 569708971
+      f1_kaisergladiator_44: 1081543076
+      f1_kaisergladiator_45: 462911458
+      f1_kaisergladiator_46: -679952649
+      f1_kaisergladiator_47: 1388574677
+      f1_kaisergladiator_48: 2018343561
+      f1_kaisergladiator_49: -208149597
+      f1_kaisergladiator_5: 1207962819
+      f1_kaisergladiator_50: 1563174891
+      f1_kaisergladiator_51: 973950294
+      f1_kaisergladiator_52: -308701238
+      f1_kaisergladiator_53: 559673559
+      f1_kaisergladiator_54: -704088056
+      f1_kaisergladiator_55: 1057270493
+      f1_kaisergladiator_56: -2008988343
+      f1_kaisergladiator_57: 790481318
+      f1_kaisergladiator_58: -632809452
+      f1_kaisergladiator_59: -1539818261
+      f1_kaisergladiator_6: -1032681502
+      f1_kaisergladiator_60: 1332584421
+      f1_kaisergladiator_61: 1037503540
+      f1_kaisergladiator_62: 961554957
+      f1_kaisergladiator_63: 2101313903
+      f1_kaisergladiator_64: -999786053
+      f1_kaisergladiator_65: -1943796363
+      f1_kaisergladiator_66: -2015120602
+      f1_kaisergladiator_67: -1703839129
+      f1_kaisergladiator_68: 1548911144
+      f1_kaisergladiator_69: 517650222
+      f1_kaisergladiator_7: 494987454
+      f1_kaisergladiator_70: -1074432995
+      f1_kaisergladiator_71: 503435585
+      f1_kaisergladiator_72: 4499999
+      f1_kaisergladiator_8: 1872211861
+      f1_kaisergladiator_9: -833219370
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

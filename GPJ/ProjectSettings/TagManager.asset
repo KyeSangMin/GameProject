@@ -7,6 +7,10 @@ TagManager:
   - Ally
   - Enemy
   - GridTile
+  - CardDeck
+  - Card
+  - CardArea
+  - DeleteZone
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - CardArea
+  - Card
   - 
   - 
   - 

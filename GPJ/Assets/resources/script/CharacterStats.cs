@@ -6,7 +6,9 @@ public class CharacterStats : MonoBehaviour
 {
     [SerializeField]
     private int Range;
+    [SerializeField]
     private int Speed;
+    [SerializeField]
     private int MaxHP;
     [SerializeField]
     private int CurrentHP;
@@ -15,37 +17,44 @@ public class CharacterStats : MonoBehaviour
     [SerializeField]
     private Vector2 position;
 
-    private HPController hpController;
+    public int TypeNum;
 
 
+    [SerializeField]
     public enum CharacterType {
         Aggressive,
         Defensive,
         Agile
 
     }
-    [SerializeField]
+    [System.Serializable]
     public struct PlayerStats
     {
-        [SerializeField]
+        
         public int health;
-        [SerializeField]
+
         public int maxhealth;
+
         public int attackDamage;
+
         public int range;
+
         public int speed;
 
+        public float defence;
         // 생성자 정의
-        public PlayerStats(int health, int maxhealth, int attackDamage, int range, int speed)
+        public PlayerStats(int health, int maxhealth, int attackDamage, int range, int speed, float defence)
         {
             this.health = health;
             this.maxhealth = maxhealth;
             this.attackDamage = attackDamage;
             this.range = range;
             this.speed = speed;
+            this.defence = defence;
         }
     }
 
+    public CharacterType characterType;
     private PlayerStats playerStats;
 
     private void Awake()
@@ -56,14 +65,37 @@ public class CharacterStats : MonoBehaviour
     void Start()
     {
 
-        hpController = gameObject.GetComponentInChildren<HPController>();
-        playerStats = new PlayerStats(300, 300, 300, 2, 100);
-        //Range = 2;
-        //Speed = 100;
-        //MaxHP = 300;
-        //CurrentHP = MaxHP;
-        //Damage = 300;
-        //position = new Vector2(0, 0);
+
+        /*int health, int maxhealth, int attackDamage, int range, int speed*/
+        switch (TypeNum)
+        {
+            case 1:
+                playerStats = new PlayerStats(200, 200, 100, 2, 105, 50); // aggressive
+                break;
+            case 2:
+                playerStats = new PlayerStats(300, 300, 50, 2, 100, 100); // defensive
+                break;
+            case 3:
+                playerStats = new PlayerStats(150, 150, 75, 3, 130, 25); //aglie
+                break;
+            case 4:
+                int random = Random.Range(93, 97);
+                playerStats = new PlayerStats(200, 200, 50, 2, random, 51);
+                break;
+            case 5:
+                playerStats = new PlayerStats(200, 100, 25, 2, 107, 50);
+                break;
+            case 6:
+                playerStats = new PlayerStats(100, 100, 50, 3, 115, 100);
+                break;
+            case 7:
+                playerStats = new PlayerStats(1000, 1000, 1000, 5, 205, 100);
+                break;
+
+        }
+
+        
+        Damage = playerStats.attackDamage;
     }
 
 
@@ -71,7 +103,8 @@ public class CharacterStats : MonoBehaviour
     void Update()
     {
         CurrentHP = playerStats.health;
-        Damage = playerStats.attackDamage;
+        MaxHP = playerStats.maxhealth;
+        //Damage = playerStats.attackDamage;
     }
 
     public int getSpeed()
@@ -96,15 +129,61 @@ public class CharacterStats : MonoBehaviour
         return position;
     }
 
+    public int damageCalculate(int damage)
+    {
+
+        float Caldamage;
+        float typeBonus = 1.0f;
+        switch(characterType)
+        {
+            case CharacterType.Aggressive:
+                typeBonus = 1.25f;
+                break;
+            case CharacterType.Agile:
+                typeBonus = 0.9f;
+                break;
+            case CharacterType.Defensive:
+                typeBonus = 0.75f;
+                break;
+        }
+        float declineRate = 1 - this.playerStats.defence / 500;
+        Caldamage = damage * typeBonus * declineRate;
+        
+
+        return (int)Caldamage;
+    }
+
     public void setHP(bool IsAttack, int damage)
     {
         if(!IsAttack)
         {
             return;
         }
-        playerStats.health = playerStats.health - damage;
-        //hpController.updateHPText(CurrentHP);
+        playerStats.health = playerStats.health - damageCalculate(damage);
         IsAttack = false;
+    }
+
+    public void EventSetHP(int eventnum, int value)
+    {
+        switch(eventnum)
+        {
+            case 1:
+                int temphp = playerStats.health + value;
+                if(temphp >= playerStats.maxhealth)
+                {
+                    playerStats.health = playerStats.maxhealth;
+                }
+                break;
+            case 2:
+                playerStats.health = playerStats.health - value;
+                break;
+        }
+        
+    }
+
+    public void EventSetDefence()
+    {
+        playerStats.defence = 0;
     }
     public int getDamage()
     {

@@ -5,6 +5,9 @@ using UnityEngine;
 public class ScenesManager : MonoBehaviour
 {
     private static ScenesManager _instance;
+    private SoundManager soundManager;
+    private GameManager gameManager;
+
     public static ScenesManager Instance
     {
         get
@@ -28,13 +31,15 @@ public class ScenesManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
+
     void Start()
     {
+        gameManager = GameManager.Instance;
+        soundManager = SoundManager.Instance;
         LoadScene("start");
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         
@@ -69,30 +74,27 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadSceneWithLoadingScreen(string sceneName, float minLoadingTime)
     {
-        // Record the start time
+
         float startTime = Time.time;
 
-        // Load the loading scene first
+
+        soundManager.PauseMusic();
         UnityEngine.SceneManagement.SceneManager.LoadScene("LoadingScene");
 
-        // Start loading the target scene in the background
+
         StartCoroutine(LoadSceneAsync(sceneName, startTime, minLoadingTime));
     }
 
-    // Coroutine to load the target scene asynchronously with minimum loading time
+
     private IEnumerator LoadSceneAsync(string sceneName, float startTime, float minLoadingTime)
     {
-        // Start loading the target scene asynchronously
-        
-        Debug.Log("内风凭1");
-        // Wait until the minimum loading time has passed
+
         float elapsedTime = Time.time - startTime;
         float remainingTime = Mathf.Max(0f, minLoadingTime - elapsedTime);
-        Debug.Log(remainingTime);
         yield return new WaitForSeconds(remainingTime);
         AsyncOperation asyncLoad = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(sceneName);
-        Debug.Log("内风凭2");
-        // Wait until the target scene is fully loaded
+        soundManager.PlayMusic(gameManager.ScenesNum);
+
         
          while (!asyncLoad.isDone)
          {
